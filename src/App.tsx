@@ -4,10 +4,9 @@ import { DocenteCarousel } from './components/carroseldocentes';
 import { DocentesPage } from './components/docentes';
 import { Header } from './components/header';
 import { ScrollToSection } from './components/scrollToSection';
+import { AreaAlunoPage } from './components/areaAluno'
 import "./index.css";
 
-import logo from "./logo.svg";
-import reactLogo from "./react.svg";
 
 
 // Dados mockados
@@ -274,6 +273,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/docentes" element={<DocentesPage professors={mockData.professors} />} />
+        <Route path="/area-aluno" element={<AreaAlunoPage/>} />
 
         {/* Outras rotas seriam adicionadas aqui */}
       </Routes>
