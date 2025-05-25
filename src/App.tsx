@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { DocenteCarousel } from './components/carroseldocentes';
 import { DocentesPage } from './components/docentes';
 import { Header } from './components/header';
+import { ScrollToSection } from './components/scrollToSection';
 import "./index.css";
 
 import logo from "./logo.svg";
@@ -269,6 +270,7 @@ const mockData = {
 function App() {
   return (
     <Router>
+      <ScrollToSection/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/docentes" element={<DocentesPage professors={mockData.professors} />} />
@@ -337,7 +339,7 @@ function HomePage() {
         </section>
 
         {/* About Section */}
-        <section className="py-16 bg-white">
+        <section id="sobre" className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
@@ -350,7 +352,7 @@ function HomePage() {
                   Com uma infraestrutura moderna e corpo docente altamente qualificado, o curso oferece uma formação sólida, 
                   combinando teoria e prática através de projetos reais e parcerias com empresas do setor.
                 </p>
-                <Link to="/sobre" className="inline-block bg-maroon-700 text-white px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
+                <Link to="/#sobre" className="inline-block bg-maroon-700 text-white px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
                   Conheça mais
                 </Link>
               </div>
@@ -581,12 +583,12 @@ function HomePage() {
             <div>
               <h3 className="text-xl font-bold mb-4">Links Rápidos</h3>
               <ul className="space-y-2">
-                <li><Link to="/sobre" className="text-gray-400 hover:text-white transition">Sobre o Curso</Link></li>
+                <li><Link to="/#sobre" className="text-gray-400 hover:text-white transition">Sobre o Curso</Link></li>
                 <li><Link to="/docentes" className="text-gray-400 hover:text-white transition">Corpo Docente</Link></li>
                 <li><Link to="/disciplinas" className="text-gray-400 hover:text-white transition">Grade Curricular</Link></li>
                 <li><Link to="/projetos" className="text-gray-400 hover:text-white transition">Projetos de Pesquisa</Link></li>
                 <li><Link to="/eventos" className="text-gray-400 hover:text-white transition">Eventos</Link></li>
-                <li><Link to="/contato" className="text-gray-400 hover:text-white transition">Contato</Link></li>
+                <li><Link to="/#contato" className="text-gray-400 hover:text-white transition">Contato</Link></li>
               </ul>
             </div>
             
@@ -602,7 +604,7 @@ function HomePage() {
               </ul>
             </div>
             
-            <div>
+            <div id="contato">
               <h3 className="text-xl font-bold mb-4">Contato</h3>
               <ul className="space-y-2">
                 <li className="flex items-start">
