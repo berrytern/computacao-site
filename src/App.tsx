@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { DocenteCarousel } from './components/carroseldocentes';
+import { DocentesPage } from './components/docentes';
 import "./index.css";
 
 import logo from "./logo.svg";
@@ -143,6 +145,123 @@ const mockData = {
       photo: "https://randomuser.me/api/portraits/men/52.jpg",
       email: "janderson.aguiar@setor.uepb.edu.br"
     }
+  ],
+ // Nova seção de docentes
+  professors: [
+    {
+      id: 1,
+      name: "Ana Isabella Muniz Leite",
+      email: "isabella@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+      id: 2,
+      name: "Antonio Carlos de Albuquerque",
+      email: "antoniocarlosdc@uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      id: 3,
+      name: "Cheyenne Ribeiro Guedes Isidro",
+      email: "charibeiro@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/women/3.jpg"
+    },
+    {
+      id: 4,
+      name: "Daniel Scherer",
+      email: "scherer@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/4.jpg"
+    },
+    {
+      id: 5,
+      name: "Dunfrey Pires Aragão",
+      email: "dunfrey.aragao@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/5.jpg"
+    },
+    {
+      id: 6,
+      name: "Edson Holanda Cavalcante Junior",
+      email: "edsonholanda@uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/6.jpg"
+    },
+    {
+      id: 7,
+      name: "Eduardo Jorge Valadares Oliveira",
+      email: "edujvo@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/7.jpg"
+    },
+    {
+      id: 8,
+      name: "Fábio Luiz Leite Júnior",
+      email: "fabioleite@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/8.jpg"
+    },
+    {
+      id: 9,
+      name: "Frederico Moreira Bublitz",
+      email: "fredbublitz@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/9.jpg"
+    },
+    {
+      id: 10,
+      name: "Janderson Jason Barbosa Aguiar",
+      email: "janderson@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/10.jpg"
+    },
+    {
+      id: 11,
+      name: "Katia Elizabete Galdino",
+      email: "katiagaldino@gmail.com",
+      photo: "https://randomuser.me/api/portraits/women/11.jpg"
+    },
+    {
+      id: 12,
+      name: "Kézia de Vasconcelos Oliveira Dantas",
+      email: "kezia.vasconcelos@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/women/12.jpg"
+    },
+    {
+      id: 13,
+      name: "Luciana de Queiroz Leal Gomes",
+      email: "lucianaleal@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/women/13.jpg"
+    },
+    {
+      id: 14,
+      name: "Misael Elias de Morais",
+      email: "moraiscg@gmail.com",
+      photo: "https://randomuser.me/api/portraits/men/14.jpg"
+    },
+    {
+      id: 15,
+      name: "Paulo Eduardo e Silva Barbosa",
+      email: "pesbarbosa@gmail.com",
+      photo: "https://randomuser.me/api/portraits/men/15.jpg"
+    },
+    {
+      id: 16,
+      name: "Robson Pequeno de Sousa",
+      email: "sousarob@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/16.jpg"
+    },
+    {
+      id: 17,
+      name: "Sabrina de Figueiredo Souto",
+      email: "sabrinadfs@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/women/17.jpg"
+    },
+    {
+      id: 18,
+      name: "Vladimir Costa de Alencar",
+      email: "valencar@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/18.jpg"
+    },
+    {
+      id: 19,
+      name: "Wellington Candeia de Araujo",
+      email: "wcandeia@servidor.uepb.edu.br",
+      photo: "https://randomuser.me/api/portraits/men/19.jpg"
+    }
   ]
 };
 
@@ -151,11 +270,15 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/docentes" element={<DocentesPage professors={mockData.professors} />} />
+
         {/* Outras rotas seriam adicionadas aqui */}
       </Routes>
     </Router>
   );
 }
+
+
 
 function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -191,6 +314,8 @@ function HomePage() {
             <nav className="hidden md:flex space-x-6">
               <Link to="/" className="text-maroon-700 font-medium hover:text-maroon-900 transition">Início</Link>
               <Link to="/sobre" className="text-gray-700 font-medium hover:text-maroon-700 transition">Sobre</Link>
+              <Link to="/noticias" className="text-gray-700 font-medium hover:text-maroon-700 transition">Noticias</Link>
+              <Link to="/eventos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Eventos</Link>
               <Link to="/docentes" className="text-gray-700 font-medium hover:text-maroon-700 transition">Docentes</Link>
               <Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>
               <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
@@ -244,7 +369,7 @@ function HomePage() {
                   <span className="bg-maroon-700 text-white px-2 py-1 text-sm rounded">{item.date}</span>
                   <h2 className="text-4xl font-bold mt-4 mb-2">{item.title}</h2>
                   <p className="text-xl mb-6">{item.excerpt}</p>
-                  <button className="bg-white text-maroon-800 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+                  <button className="bg-gray-200 text-black px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
                     Leia mais
                   </button>
                 </div>
@@ -455,6 +580,8 @@ function HomePage() {
             </div>
           </div>
         </section>
+        <DocenteCarousel professors={mockData.professors} />
+
         {/* CTA */}
         <section className="py-16 bg-maroon-700 text-white">
           <div className="container mx-auto px-4 text-center">
