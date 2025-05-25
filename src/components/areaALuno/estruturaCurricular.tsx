@@ -109,6 +109,7 @@ export function EstruturaCurricularPage() {
       tecnologica: "bg-blue-200 border-blue-500",
       especifica: "bg-orange-200 border-orange-500",
       eletiva: "bg-yellow-200 border-yellow-500",
+      estagio: "bg-red-200 border-red-500",
       tcc: "bg-purple-200 border-purple-500"
     };
     return colorMap[category] || "bg-gray-200 border-gray-500";
@@ -145,19 +146,23 @@ export function EstruturaCurricularPage() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-green-200 border border-green-500 mr-2"></div>
-                  <span className="text-sm">Disciplinas Gerais</span>
+                  <span className="text-sm">Básico Comum</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-blue-200 border border-blue-500 mr-2"></div>
-                  <span className="text-sm">Disciplinas Específicas - Ciências da Computação</span>
+                  <span className="text-sm">Específicas - Ciências da Computação</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-orange-200 border border-orange-500 mr-2"></div>
-                  <span className="text-sm">Disciplinas Específicas - Base Tecnológica</span>
+                  <span className="text-sm">Específicas - Base Tecnológica</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-yellow-200 border border-yellow-500 mr-2"></div>
-                  <span className="text-sm">Disciplinas Eletivas</span>
+                  <span className="text-sm">Eletivas</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-red-200 border border-red-500 mr-2"></div>
+                  <span className="text-sm">Estágio</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-purple-200 border border-purple-500 mr-2"></div>
