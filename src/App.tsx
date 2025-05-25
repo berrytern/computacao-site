@@ -425,7 +425,7 @@ function HomePage() {
                   {mockData.events.map(event => (
                     <div key={event.id} className="bg-gray-50 p-4 rounded-lg hover:shadow-md transition">
                       <div className="flex items-start">
-                        <div className="bg-maroon-700 text-white rounded-md p-2 text-center mr-4 min-w-[60px]">
+                        <div className="bg-maroon-700 text-gray rounded-md p-2 text-center mr-4 min-w-[60px]">
                           <span className="block text-xl font-bold">{event.date.split('/')[0]}</span>
                           <span className="block text-sm">{event.date.split('/')[1]}</span>
                         </div>

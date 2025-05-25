@@ -27,7 +27,7 @@ export function Header(props: any) {
         <Link to="/noticias" className="text-gray-700 font-medium hover:text-maroon-700 transition">Noticias</Link>
         <Link to="/eventos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Eventos</Link>
         <Link to="/docentes" className="text-gray-700 font-medium hover:text-maroon-700 transition">Docentes</Link>
-        <Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>
+        {/*<Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>*/}
         <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
         <Link to="/#contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
         <Link to="/area-aluno" className="bg-maroon-700 text-gray-700 px-4 py-2 rounded-md hover:bg-maroon-800 transition">Área do Aluno</Link>
@@ -49,9 +49,9 @@ export function Header(props: any) {
         <div className="md:hidden py-4 border-t border-gray-200">
         <div className="flex flex-col space-y-3">
             <Link to="/" className="text-maroon-700 font-medium hover:text-maroon-900 transition">Início</Link>
-            <Link to="/sobre" className="text-gray-700 font-medium hover:text-maroon-700 transition">Sobre</Link>
+            <Link to="/#sobre" className="text-gray-700 font-medium hover:text-maroon-700 transition">Sobre</Link>
             <Link to="/docentes" className="text-gray-700 font-medium hover:text-maroon-700 transition">Docentes</Link>
-            <Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>
+            {/*<Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>*/}
             <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
             <Link to="/contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
             <Link to="/area-aluno" className="bg-maroon-700 text-white px-4 py-2 rounded-md hover:bg-maroon-800 transition text-center">Área do Aluno</Link>
