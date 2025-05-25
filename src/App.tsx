@@ -177,7 +177,7 @@ function HomePage() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <img 
-                src="https://www.uepb.edu.br/wp-content/uploads/2017/01/logo-uepb.png" 
+                src="https://upload.wikimedia.org/wikipedia/commons/7/77/Marca-da-UEPB-Aplica%C3%A7%C3%A3o-Colorida-em-PNG-1.png" 
                 alt="Logo UEPB" 
                 className="h-12 mr-3"
               />
@@ -195,7 +195,7 @@ function HomePage() {
               <Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>
               <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
               <Link to="/contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
-              <Link to="/area-aluno" className="bg-maroon-700 text-white px-4 py-2 rounded-md hover:bg-maroon-800 transition">Área do Aluno</Link>
+              <Link to="/area-aluno" className="bg-maroon-700 text-gray-700 px-4 py-2 rounded-md hover:bg-maroon-800 transition">Área do Aluno</Link>
             </nav>
             
             {/* Mobile Menu Button */}
