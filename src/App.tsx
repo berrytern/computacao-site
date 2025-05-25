@@ -434,13 +434,16 @@ function HomePage() {
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center text-maroon-800">Coordenação</h2>
-            <div className="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
               {mockData.coordinators.map(coordinator => (
-                <div key={coordinator.id} className="bg-white p-6 rounded-lg shadow-md text-center max-w-xs mx-auto">
+                <div 
+                  key={coordinator.id} 
+                  className="bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center"
+                >
                   <img 
                     src={coordinator.photo} 
                     alt={coordinator.name}
-                    className="w-32 h-32 rounded-full object-cover mx-auto mb-4"
+                    className="w-32 h-32 rounded-full object-cover mb-4"
                   />
                   <h3 className="font-bold text-xl mb-1">{coordinator.name}</h3>
                   <p className="text-maroon-700 mb-3">{coordinator.role}</p>
@@ -452,7 +455,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-
         {/* CTA */}
         <section className="py-16 bg-maroon-700 text-white">
           <div className="container mx-auto px-4 text-center">
