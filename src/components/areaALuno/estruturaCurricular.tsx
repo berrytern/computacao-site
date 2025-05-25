@@ -8,6 +8,12 @@ export function EstruturaCurricularPage() {
   // Estado para controlar a disciplina selecionada
   const [selectedDiscipline, setSelectedDiscipline] = useState(null);
   
+  // Estado para controlar a disciplina destacada (ao passar o mouse)
+  const [highlightedCode, setHighlightedCode] = useState(null);
+  // Estado para controlar o tipo de destaque (prerequisito ou dependente)
+  const [highlightType, setHighlightType] = useState(null);
+
+
   // Dados mockados das disciplinas (substitua pelos dados reais)
   const disciplinesData = [
     {
@@ -102,6 +108,32 @@ export function EstruturaCurricularPage() {
     // ... adicione mais disciplinas
   ];
 
+  const calculateDependencies = () => {
+    const dependencies:any = {};
+    
+    // Inicializa o objeto de dependências para cada disciplina
+    disciplinesData.forEach(discipline => {
+      dependencies[discipline.codigo] = {
+        prerequisites: discipline.prerequisitos || [],
+        dependents: []
+      };
+    });
+    
+    // Preenche a lista de dependentes para cada disciplina
+    disciplinesData.forEach(discipline => {
+      (discipline.prerequisitos || []).forEach(preReqCode => {
+        if (dependencies[preReqCode]) {
+          dependencies[preReqCode].dependents.push(discipline.codigo);
+        }
+      });
+    });
+    
+    return dependencies;
+  };
+  
+  // Calcula as dependências entre disciplinas
+  const dependencies = calculateDependencies();
+
   // Função para obter a cor da disciplina baseada na categoria
   const getCategoryColor = (category:string) => {
     const colorMap = {
@@ -109,11 +141,84 @@ export function EstruturaCurricularPage() {
       tecnologica: "bg-blue-200 border-blue-500",
       especifica: "bg-orange-200 border-orange-500",
       eletiva: "bg-yellow-200 border-yellow-500",
-      estagio: "bg-red-200 border-red-500",
+      estagio: "bg-teal-200 border-teal-500",
       tcc: "bg-purple-200 border-purple-500"
     };
     return colorMap[category] || "bg-gray-200 border-gray-500";
   };
+
+  // Função para determinar a classe de destaque de uma disciplina
+  const getHighlightClass = (disciplineCode:any) => {
+    if (!highlightedCode) return "";
+    
+    if (disciplineCode === highlightedCode) {
+      return "ring-4 ring-blue-500 shadow-lg";
+    }
+    
+    if (highlightType === 'prerequisites' && dependencies[highlightedCode]?.prerequisites.includes(disciplineCode)) {
+      return "ring-4 ring-red-500 shadow-lg";
+    }
+    
+    if (highlightType === 'dependents' && dependencies[highlightedCode]?.dependents.includes(disciplineCode)) {
+      return "ring-4 ring-green-500 shadow-lg";
+    }
+    
+    return "opacity-50";
+  };
+  
+  // Função para lidar com o mouse sobre uma disciplina
+  const handleMouseEnter = (disciplineCode:any, type:any) => {
+    setHighlightedCode(disciplineCode);
+    setHighlightType(type);
+  };
+
+  // Função para lidar com o mouse saindo de uma disciplina
+  const handleMouseLeave = () => {
+    setHighlightedCode(null);
+    setHighlightType(null);
+  };
+  
+  // Função para encontrar uma disciplina pelo código
+  const findDisciplineByCode = (code:any) => {
+    return disciplinesData.find(d => d.codigo === code);
+  };
+
+  // Adicione este estado no início do componente, junto com os outros estados
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+
+    // Adicione esta função para realizar a busca
+    const handleSearch = (term:any) => {
+        setSearchTerm(term);
+  
+        if (!term.trim()) {
+          setSearchResults([]);
+          return;
+        }
+        
+        // Filtra as disciplinas e garante que não haja duplicatas usando um Set de códigos
+        const seenCodes = new Set();
+        const filteredDisciplines:any = disciplinesData.filter(discipline => {
+          // Verifica se o termo de busca está presente no nome, código ou ementa
+          const matchesTerm = 
+            discipline.nome.toLowerCase().includes(term.toLowerCase()) || 
+            discipline.codigo.toLowerCase().includes(term.toLowerCase()) || 
+            discipline.ementa.toLowerCase().includes(term.toLowerCase());
+          
+          // Se não corresponder ao termo de busca, retorna false
+          if (!matchesTerm) return false;
+          
+          // Se já vimos este código antes, retorna false (evita duplicatas)
+          //if (seenCodes.has(discipline.codigo)) return false;
+          
+          // Caso contrário, adiciona o código ao conjunto e retorna true
+          seenCodes.add(discipline.codigo);
+          return true;
+        });
+        
+        setSearchResults(filteredDisciplines);
+    };
+
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
@@ -146,28 +251,47 @@ export function EstruturaCurricularPage() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-green-200 border border-green-500 mr-2"></div>
-                  <span className="text-sm">Básico Comum</span>
-                </div>
-                <div className="flex items-center">
-                  <div className="w-4 h-4 bg-blue-200 border border-blue-500 mr-2"></div>
-                  <span className="text-sm">Específicas - Ciências da Computação</span>
+                  <span className="text-sm">Disciplinas Gerais</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-orange-200 border border-orange-500 mr-2"></div>
-                  <span className="text-sm">Específicas - Base Tecnológica</span>
+                  <span className="text-sm">Disciplinas Específicas</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-blue-200 border border-blue-500 mr-2"></div>
+                  <span className="text-sm">Disciplinas Tecnológicas</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-yellow-200 border border-yellow-500 mr-2"></div>
-                  <span className="text-sm">Eletivas</span>
+                  <span className="text-sm">Disciplinas Eletivas</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-4 h-4 bg-red-200 border border-red-500 mr-2"></div>
+                  <div className="w-4 h-4 bg-teal-200 border border-teal-500 mr-2"></div>
                   <span className="text-sm">Estágio</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-4 h-4 bg-purple-200 border border-purple-500 mr-2"></div>
                   <span className="text-sm">TCC</span>
                 </div>
+              </div>
+              
+              <h3 className="text-xl font-bold text-maroon-800 mt-6 mb-4">Destaque de Relações</h3>
+              <div className="space-y-2">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-blue-500 mr-2"></div>
+                  <span className="text-sm">Disciplina selecionada</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-red-500 mr-2"></div>
+                  <span className="text-sm">Pré-requisitos</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-green-500 mr-2"></div>
+                  <span className="text-sm">Disciplinas dependentes</span>
+                </div>
+                <p className="text-xs mt-2 text-gray-600">
+                  Passe o mouse sobre uma disciplina para ver suas relações
+                </p>
               </div>
             </div>
           </div>
@@ -185,31 +309,68 @@ export function EstruturaCurricularPage() {
             <section id="fluxograma" className="mb-16">
               <h2 className="text-3xl font-bold text-maroon-700 mb-6">Fluxograma do Curso</h2>
               <div className="bg-white p-6 rounded-lg shadow-md overflow-x-auto">
-                {/* Aqui você manteria o fluxograma existente, mas tornando-o interativo */}
-                <div className="min-w-[1000px]"> {/* Garante que o fluxograma tenha um tamanho mínimo para visualização */}
+                <div className="min-w-[1000px]">
                   {/* Fluxograma por semestre */}
-                  {Array.from({ length: 8 },
-                    (_, i) => i + 1).map(semestre => (
-                    <div key={semestre} className="mb-8">
+                  {Array.from({ length: 8 }, (_, i) => i + 1).map(semestre => (
+                    <div key={semestre} className="mb-12">
                       <h3 className="text-xl font-semibold text-maroon-800 mb-4 border-b-2 border-maroon-200 pb-2">
                         {semestre}º Semestre
                       </h3>
-                      <div className="grid grid-cols-3 gap-4">
+                      <div className="grid grid-cols-3 gap-6">
                         {disciplinesData
                           .filter(d => d.semestre === semestre)
                           .map(discipline => (
                             <div 
                               key={discipline.codigo}
-                              className={`${getCategoryColor(discipline.categoria)} p-4 rounded-lg border-2 cursor-pointer transition-transform hover:scale-105`}
+                              className={`${getCategoryColor(discipline.categoria)} p-4 rounded-lg border-2 cursor-pointer transition-all duration-300 ${getHighlightClass(discipline.codigo)}`}
                               onClick={() => setSelectedDiscipline(discipline)}
+                              onMouseEnter={() => handleMouseEnter(discipline.codigo, 'both')}
+                              onMouseLeave={handleMouseLeave}
                             >
                               <h4 className="font-bold text-gray-900">{discipline.nome}</h4>
                               <p className="text-sm text-gray-700">{discipline.codigo}</p>
                               <p className="text-sm text-gray-700">{discipline.cargaHoraria}</p>
-                              {discipline.prerequisitos.length > 0 && (
-                                <p className="text-xs text-gray-600 mt-2">
-                                  <span className="font-semibold">Pré-requisitos:</span> {discipline.prerequisitos.join(', ')}
-                                </p>
+                              
+                              {/* Pré-requisitos */}
+                              {discipline.prerequisitos && discipline.prerequisitos.length > 0 && (
+                                <div className="mt-2">
+                                  <p className="text-xs font-semibold text-gray-600">Pré-requisitos:</p>
+                                  <div className="flex flex-wrap gap-1 mt-1">
+                                    {discipline.prerequisitos.map(preReqCode => (
+                                      <span 
+                                        key={preReqCode}
+                                        className="text-xs bg-red-100 text-red-800 px-1 py-0.5 rounded"
+                                        onMouseEnter={(e) => {
+                                          e.stopPropagation();
+                                          handleMouseEnter(preReqCode, 'prerequisites');
+                                        }}
+                                      >
+                                        {preReqCode}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              
+                              {/* Disciplinas dependentes */}
+                              {dependencies[discipline.codigo]?.dependents.length > 0 && (
+                                <div className="mt-2">
+                                  <p className="text-xs font-semibold text-gray-600">É pré-requisito para:</p>
+                                  <div className="flex flex-wrap gap-1 mt-1">
+                                    {dependencies[discipline.codigo].dependents.map(depCode => (
+                                      <span 
+                                        key={depCode}
+                                        className="text-xs bg-green-100 text-green-800 px-1 py-0.5 rounded"
+                                        onMouseEnter={(e) => {
+                                          e.stopPropagation();
+                                          handleMouseEnter(depCode, 'dependents');
+                                        }}
+                                      >
+                                        {depCode}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
                               )}
                             </div>
                           ))}
@@ -218,11 +379,74 @@ export function EstruturaCurricularPage() {
                   ))}
                 </div>
 
-                <p className="text-center text-gray-600 mt-4 italic">
-                  Clique em uma disciplina para visualizar sua ementa completa.
-                </p>
+                <div className="text-center text-gray-600 mt-8 p-4 bg-gray-50 rounded-lg">
+                  <p className="font-medium mb-2">Como usar o fluxograma interativo:</p>
+                  <ul className="text-sm list-disc list-inside">
+                    <li>Clique em uma disciplina para ver sua ementa completa</li>
+                    <li>Passe o mouse sobre uma disciplina para destacar suas relações</li>
+                    <li>Disciplinas em vermelho são pré-requisitos da disciplina destacada</li>
+                    <li>Disciplinas em verde têm a disciplina destacada como pré-requisito</li>
+                  </ul>
+                </div>
               </div>
             </section>
+
+            {/* Seção de Busca de Disciplinas */}
+            <section className="mb-16">
+                <h2 className="text-3xl font-bold text-maroon-700 mb-6">Busca de Disciplinas</h2>
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="mb-6">
+                    <input
+                        type="text"
+                        placeholder="Busque por nome, código ou conteúdo da disciplina..."
+                        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-maroon-500"
+                        value={searchTerm}
+                        onChange={(e) => handleSearch(e.target.value)}
+                    />
+                    </div>
+                    
+                    {searchTerm && (
+                    <div>
+                        {searchResults.length > 0 ? (
+                        <div>
+                            <p className="text-gray-700 mb-4">
+                            Encontramos {searchResults.length} disciplina(s) para "{searchTerm}":
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {searchResults.map(discipline => (
+                                <div 
+                                key={discipline.codigo}
+                                className={`${getCategoryColor(discipline.categoria)} p-4 rounded-lg border cursor-pointer hover:shadow-md transition-shadow`}
+                                onClick={() => setSelectedDiscipline(discipline)}
+                                >
+                                <h4 className="font-bold text-gray-900">{discipline.nome}</h4>
+                                <div className="flex justify-between items-center">
+                                    <p className="text-sm text-gray-700">{discipline.codigo}</p>
+                                    {discipline.semestre && (
+                                    <span className="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded-full">
+                                        {discipline.semestre}º Semestre
+                                    </span>
+                                    )}
+                                </div>
+                                <p className="text-xs text-gray-600 mt-2 line-clamp-2">
+                                    {discipline.ementa.substring(0, 150)}...
+                                </p>
+                                </div>
+                            ))}
+                            </div>
+                        </div>
+                        ) : (
+                        <div className="text-center py-6">
+                            <p className="text-gray-700">Nenhuma disciplina encontrada para "{searchTerm}".</p>
+                            <p className="text-gray-500 text-sm mt-2">
+                            Tente buscar por outro termo ou verifique a ortografia.
+                            </p>
+                        </div>
+                        )}
+                    </div>
+                    )}
+                </div>
+                </section>
 
             {/* Seção de Ementas */}
             <section id="ementas" className="mb-16">
@@ -233,10 +457,9 @@ export function EstruturaCurricularPage() {
                 </p>
 
                 {/* Acordeão de disciplinas por semestre */}
-                {Array.from({ length: 8 },
-                    (_, i) => i + 1).map(semestre => (
+                {Array.from({ length: 8 }, (_, i) => i + 1).map(semestre => (
                   <details key={semestre} className="mb-4">
-                    <summary className="font-bold text-lg text-maroon-800 cursor-pointer py-2 border-b border-gray-200">
+                    <summary className="font-bold text-lg text-maroon-800 cursor-pointer py-2 border-b border-gray-200 hover:bg-gray-50 transition-colors">
                       {semestre}º Semestre
                     </summary>
                     <div className="mt-4 pl-4 space-y-6">
@@ -244,10 +467,45 @@ export function EstruturaCurricularPage() {
                         .filter(d => d.semestre === semestre)
                         .map(discipline => (
                           <details key={discipline.codigo} className="border-b border-gray-100 pb-4">
-                            <summary className="font-semibold cursor-pointer">
+                            <summary className="font-semibold cursor-pointer hover:text-maroon-700 transition-colors">
                               {discipline.nome} ({discipline.codigo}) - {discipline.cargaHoraria}
                             </summary>
                             <div className="mt-2 pl-4">
+                              {/* Pré-requisitos e dependentes */}
+                              <div className="flex flex-wrap gap-4 mb-4">
+                                {discipline.prerequisitos && discipline.prerequisitos.length > 0 && (
+                                  <div className="bg-red-50 p-2 rounded-md">
+                                    <h4 className="font-semibold text-red-800 text-sm">Pré-requisitos:</h4>
+                                    <ul className="mt-1">
+                                      {discipline.prerequisitos.map(preReqCode => {
+                                        const preReq = findDisciplineByCode(preReqCode);
+                                        return (
+                                          <li key={preReqCode} className="text-sm">
+                                            {preReq ? `${preReq.nome} (${preReqCode})` : preReqCode}
+                                          </li>
+                                        );
+                                      })}
+                                    </ul>
+                                  </div>
+                                )}
+                                
+                                {dependencies[discipline.codigo]?.dependents.length > 0 && (
+                                  <div className="bg-green-50 p-2 rounded-md">
+                                    <h4 className="font-semibold text-green-800 text-sm">É pré-requisito para:</h4>
+                                    <ul className="mt-1">
+                                      {dependencies[discipline.codigo].dependents.map(depCode => {
+                                        const dep = findDisciplineByCode(depCode);
+                                        return (
+                                          <li key={depCode} className="text-sm">
+                                            {dep ? `${dep.nome} (${depCode})` : depCode}
+                                          </li>
+                                        );
+                                      })}
+                                    </ul>
+                                  </div>
+                                )}
+                              </div>
+                              
                               <h4 className="font-semibold mt-2">Ementa:</h4>
                               <p className="text-gray-700 mb-4">{discipline.ementa}</p>
                               
@@ -337,14 +595,20 @@ export function EstruturaCurricularPage() {
                 <p className="text-gray-700 mb-4">
                   O curso oferece as seguintes disciplinas eletivas, das quais o aluno deve cursar um mínimo de 180 horas:
                 </p>
-                <ul className="list-disc list-inside text-gray-700 mb-6">
-                  <li>Tópicos Especiais em Computação I (60h)</li>
-                  <li>Tópicos Especiais em Computação II (60h)</li>
-                  <li>Tópicos Especiais em Computação III (60h)</li>
-                  <li>Tópicos Especiais em Computação IV (60h)</li>
-                  <li>Tópicos Especiais em Computação V (60h)</li>
-                  <li>Tópicos Especiais em Computação VI (60h)</li>
-                </ul>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  {disciplinesData
+                    .filter(d => d.categoria === 'eletiva')
+                    .map(discipline => (
+                      <div 
+                        key={discipline.codigo} 
+                        className="bg-yellow-50 p-3 rounded-md cursor-pointer hover:bg-yellow-100 transition-colors"
+                        onClick={() => setSelectedDiscipline(discipline)}
+                      >
+                        <h4 className="font-semibold text-yellow-800">{discipline.nome}</h4>
+                        <p className="text-sm text-yellow-700">{discipline.codigo} - {discipline.cargaHoraria}</p>
+                      </div>
+                    ))}
+                </div>
               </div>
             </section>
           </div>
@@ -362,26 +626,64 @@ export function EstruturaCurricularPage() {
               &times;
             </button>
             <div className={`${getCategoryColor(selectedDiscipline.categoria)} inline-block px-3 py-1 rounded-full text-sm font-semibold mb-4`}>
-              {selectedDiscipline.semestre}º Semestre
+              {selectedDiscipline.semestre ? `${selectedDiscipline.semestre}º Semestre` : 'Eletiva'}
             </div>
             <h2 className="text-3xl font-bold text-maroon-800 mb-2">{selectedDiscipline.nome}</h2>
             <p className="text-gray-600 mb-4">{selectedDiscipline.codigo} | {selectedDiscipline.cargaHoraria}</p>
             
-            {selectedDiscipline.prerequisitos.length > 0 && (
-              <div className="mb-4">
-                <h3 className="font-semibold text-gray-800">Pré-requisitos:</h3>
-                <p className="text-gray-700">{selectedDiscipline.prerequisitos.join(', ')}</p>
-              </div>
-            )}
+            {/* Seção de relacionamentos */}
+            <div className="flex flex-wrap gap-4 mb-6">
+              {/* Pré-requisitos */}
+              {selectedDiscipline.prerequisitos && selectedDiscipline.prerequisitos.length > 0 && (
+                <div className="bg-red-50 p-3 rounded-md flex-1">
+                  <h3 className="font-semibold text-red-800 mb-2">Pré-requisitos:</h3>
+                  <ul className="space-y-1">
+                    {selectedDiscipline.prerequisitos.map(preReqCode => {
+                      const preReq = findDisciplineByCode(preReqCode);
+                      return (
+                        <li 
+                          key={preReqCode} 
+                          className="text-red-700 cursor-pointer hover:underline"
+                          onClick={() => setSelectedDiscipline(preReq)}
+                        >
+                          {preReq ? `${preReq.nome} (${preReqCode})` : preReqCode}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+              
+              {/* Disciplinas dependentes */}
+              {dependencies[selectedDiscipline.codigo]?.dependents.length > 0 && (
+                <div className="bg-green-50 p-3 rounded-md flex-1">
+                  <h3 className="font-semibold text-green-800 mb-2">É pré-requisito para:</h3>
+                  <ul className="space-y-1">
+                    {dependencies[selectedDiscipline.codigo].dependents.map(depCode => {
+                      const dep = findDisciplineByCode(depCode);
+                      return (
+                        <li 
+                          key={depCode} 
+                          className="text-green-700 cursor-pointer hover:underline"
+                          onClick={() => setSelectedDiscipline(dep)}
+                        >
+                          {dep ? `${dep.nome} (${depCode})` : depCode}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
             
-            <div className="mb-4">
-              <h3 className="font-semibold text-gray-800">Ementa:</h3>
+            <div className="mb-6">
+              <h3 className="font-semibold text-gray-800 text-lg border-b border-gray-200 pb-2 mb-2">Ementa:</h3>
               <p className="text-gray-700">{selectedDiscipline.ementa}</p>
             </div>
             
-            <div className="mb-4">
-              <h3 className="font-semibold text-gray-800">Bibliografia Básica:</h3>
-              <ul className="list-disc list-inside text-gray-700">
+            <div className="mb-6">
+              <h3 className="font-semibold text-gray-800 text-lg border-b border-gray-200 pb-2 mb-2">Bibliografia Básica:</h3>
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {selectedDiscipline.referencias.basica.map((ref, idx) => (
                   <li key={idx}>{ref}</li>
                 ))}
@@ -389,8 +691,8 @@ export function EstruturaCurricularPage() {
             </div>
             
             <div>
-              <h3 className="font-semibold text-gray-800">Bibliografia Complementar:</h3>
-              <ul className="list-disc list-inside text-gray-700">
+              <h3 className="font-semibold text-gray-800 text-lg border-b border-gray-200 pb-2 mb-2">Bibliografia Complementar:</h3>
+              <ul className="list-disc list-inside text-gray-700 space-y-1">
                 {selectedDiscipline.referencias.complementar.map((ref, idx) => (
                   <li key={idx}>{ref}</li>
                 ))}
