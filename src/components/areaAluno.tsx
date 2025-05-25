@@ -12,6 +12,12 @@ export function AreaAlunoPage() {
       link: "/area-aluno/calendario"
     },
     {
+        title: "Estrutura Curricular",
+        description: "Visualize o fluxograma do curso, pré-requisitos e acesse as ementas completas de todas as disciplinas.",
+        icon: "📊", // Ou outro ícone relevante
+        link: "/area-aluno/estrutura-curricular"
+    },
+    {
       title: "Formulários e Requerimentos",
       description: "Acesse e preencha formulários para solicitações diversas, como declarações, histórico escolar, trancamento de matrícula e aproveitamento de estudos.",
       icon: "📄",
