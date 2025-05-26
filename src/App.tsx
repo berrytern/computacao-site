@@ -8,6 +8,7 @@ import { AreaAlunoPage } from './components/areaAluno'
 import { EstruturaCurricularPage } from './components/areaALuno/estruturaCurricular'
 import { Footer } from './components/footer'
 import "./index.css";
+import { Calendario } from './components/areaALuno/calendario';
 
 
 // Dados mockados
@@ -276,6 +277,7 @@ function App() {
         <Route path="/docentes" element={<DocentesPage professors={mockData.professors} />} />
         <Route path="/area-aluno" element={<AreaAlunoPage/>} />
         <Route path="/area-aluno/estrutura-curricular" element={<EstruturaCurricularPage />} />
+        <Route path="/area-aluno/calendario" element={<Calendario />} />
         // Se optar por páginas dedicadas para disciplinas:
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
 
