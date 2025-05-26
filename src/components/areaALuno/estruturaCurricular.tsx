@@ -615,10 +615,18 @@ export function EstruturaCurricularPage() {
 
       {/* Modal para visualização da ementa quando uma disciplina é clicada no fluxograma */}
       {selectedDiscipline && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-[rgba(0,0,0,0.20)] flex items-center justify-center z-50 p-4"
+          onClick={(e) => {
+          // Fecha o modal apenas se o clique foi no backdrop (fora do conteúdo do modal)
+          if (e.target === e.currentTarget) {
+            setSelectedDiscipline(null);
+          }
+        }}
+        >
+          
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative">
             <button
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl"
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-gray-100 transition-colors"
               onClick={() => setSelectedDiscipline(null)}
             >
               &times;
