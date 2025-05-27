@@ -52,6 +52,8 @@ export function Header(props: any) {
         <div className="flex flex-col space-y-3">
             <Link to="/" className="text-maroon-700 font-medium hover:text-maroon-900 transition">Início</Link>
             <Link to="/#sobre" className="text-gray-700 font-medium hover:text-maroon-700 transition">Sobre</Link>
+            <Link to="/noticias" className="text-gray-700 font-medium hover:text-maroon-700 transition">Noticias</Link>
+            <Link to="/eventos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Eventos</Link>
             <Link to="/docentes" className="text-gray-700 font-medium hover:text-maroon-700 transition">Docentes</Link>
             {/*<Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>*/}
             <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>

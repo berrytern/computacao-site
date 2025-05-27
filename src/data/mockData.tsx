@@ -18,6 +18,7 @@ export interface EventItem {
   imageUrl: string;
   summary: string;
   content: string; // Conteúdo completo do evento
+  speaker: string;
 }
 
 export const mockNews: NewsItem[] = [
@@ -56,7 +57,8 @@ export const mockEvents: EventItem[] = [
     location: 'Laboratório 2, Central de Aulas, Campus I',
     imageUrl: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
     summary: 'Aprenda a construir interfaces modernas e responsivas com as tecnologias mais procuradas do mercado.',
-    content: 'O Departamento de Computação da UEPB, em parceria com empresas de tecnologia locais, promoverá um workshop intensivo sobre Desenvolvimento Web utilizando React e Tailwind CSS. O evento, que acontecerá no Laboratório 2 da Central de Aulas, conforme a infraestrutura disponível no Campus I, é voltado para estudantes e profissionais interessados em aprimorar suas habilidades em front-end. Serão abordados desde os conceitos básicos de React até a criação de componentes reutilizáveis e a estilização eficiente com Tailwind CSS. A iniciativa faz parte da política da UEPB de "incentivar o desenvolvimento de projetos vinculados ao Programa Institucional de Bolsas de Iniciação à Pesquisa (PIBIC)" e de "potencializar a realização de eventos de reflexão sobre o processo de ensino-aprendizagem", oferecendo aos alunos a oportunidade de aplicar conhecimentos práticos e se preparar para o mercado de trabalho, que demanda profissionais com "conhecimentos tecnológicos e bons fundamentos".'
+    content: 'O Departamento de Computação da UEPB, em parceria com empresas de tecnologia locais, promoverá um workshop intensivo sobre Desenvolvimento Web utilizando React e Tailwind CSS. O evento, que acontecerá no Laboratório 2 da Central de Aulas, conforme a infraestrutura disponível no Campus I, é voltado para estudantes e profissionais interessados em aprimorar suas habilidades em front-end. Serão abordados desde os conceitos básicos de React até a criação de componentes reutilizáveis e a estilização eficiente com Tailwind CSS. A iniciativa faz parte da política da UEPB de "incentivar o desenvolvimento de projetos vinculados ao Programa Institucional de Bolsas de Iniciação à Pesquisa (PIBIC)" e de "potencializar a realização de eventos de reflexão sobre o processo de ensino-aprendizagem", oferecendo aos alunos a oportunidade de aplicar conhecimentos práticos e se preparar para o mercado de trabalho, que demanda profissionais com "conhecimentos tecnológicos e bons fundamentos".',
+    speaker: "Prof. João Santos"
   },
   {
     id: '2',
@@ -66,16 +68,18 @@ export const mockEvents: EventItem[] = [
     location: 'Auditório do CCT, Campus I',
     imageUrl: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
     summary: 'Descubra os desafios e as oportunidades da cibersegurança em um mundo cada vez mais dominado pela Inteligência Artificial.',
-    content: 'O Auditório do Centro de Ciências e Tecnologia (CCT) da UEPB será palco de uma palestra imperdível sobre "O Futuro da Cibersegurança na Era da IA", ministrada pelo Prof. Dr. Daniel Scherer, especialista em Inteligência Artificial e membro do Núcleo Docente Estruturante (NDE) do curso de Computação. A palestra abordará as últimas tendências em ameaças cibernéticas, as estratégias de defesa baseadas em IA e o papel dos profissionais de computação nesse cenário em constante evolução. Este evento está alinhado com a "política de fortalecimento da Pesquisa, Pós-Graduação e Internacionalização" da UEPB, que busca aprimorar a formação de pesquisadores e profissionais em áreas de ponta. A discussão sobre cibersegurança é crucial para a formação de egressos capazes de "intervir teórica e tecnicamente com visão crítica" em sistemas de alta complexidade, como os mencionados no perfil do egresso, que incluem "sistemas que sofrem regulação".'
+    content: 'O Auditório do Centro de Ciências e Tecnologia (CCT) da UEPB será palco de uma palestra imperdível sobre "O Futuro da Cibersegurança na Era da IA", ministrada pelo Prof. Dr. Daniel Scherer, especialista em Inteligência Artificial e membro do Núcleo Docente Estruturante (NDE) do curso de Computação. A palestra abordará as últimas tendências em ameaças cibernéticas, as estratégias de defesa baseadas em IA e o papel dos profissionais de computação nesse cenário em constante evolução. Este evento está alinhado com a "política de fortalecimento da Pesquisa, Pós-Graduação e Internacionalização" da UEPB, que busca aprimorar a formação de pesquisadores e profissionais em áreas de ponta. A discussão sobre cibersegurança é crucial para a formação de egressos capazes de "intervir teórica e tecnicamente com visão crítica" em sistemas de alta complexidade, como os mencionados no perfil do egresso, que incluem "sistemas que sofrem regulação".',
+    speaker: "Dra. Maria Silva (Google)"
   },
   {
-    id: '3',
-    title: 'Feira de Projetos de Extensão do Curso de Computação',
-    date: '2024-07-05',
-    time: '10:00 - 18:00',
-    location: 'Área de Convivência do CCT, Campus I',
-    imageUrl: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    summary: 'Conheça os projetos desenvolvidos pelos alunos do curso de Computação que impactam diretamente a comunidade.',
-    content: 'A Feira de Projetos de Extensão do Curso de Computação da UEPB é uma vitrine das iniciativas que conectam o conhecimento acadêmico com as necessidades da sociedade. Alunos apresentarão projetos inovadores em diversas áreas, desde aplicativos para educação inclusiva até sistemas de gestão para pequenas empresas. Este evento exemplifica a "indissociabilidade entre ensino, pesquisa e extensão", um dos princípios norteadores da UEPB, onde "cada atividade de extensão seja um espaço privilegiado, no qual educadores, educandos e comunidade articulam a difusão e a produção do conhecimento acadêmico em diálogo com o conhecimento popular". A feira também reforça o "perfil do egresso" que busca "tornar-se atuante no sentido de resolver ou evidenciar problemas existentes na sociedade". A comunidade é convidada a prestigiar e interagir com os futuros profissionais da computação, que demonstram seu "compromisso social" e sua capacidade de "produzir, socializar e aplicar o conhecimento".'
-  },
+    id: "3",
+    title: "Defesa de TCC: Sistemas de Recomendação",
+    date: "2025-06-10",
+    time: "10:00 - 11:00",
+    location: "Sala 201, Campus I",
+    imageUrl: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    summary: "Apresentação do Trabalho de Conclusão de Curso sobre Sistemas de Recomendação pelo aluno Pedro Oliveira.",
+    content: "Nesta defesa de TCC, o aluno Pedro Oliveira apresentará sua pesquisa sobre Sistemas de Recomendação, abordando os fundamentos teóricos, metodologias e aplicações práticas destes sistemas que são amplamente utilizados em plataformas digitais. O trabalho explora como algoritmos de recomendação podem melhorar a experiência do usuário e otimizar processos de tomada de decisão. A banca avaliadora e a comunidade acadêmica são convidadas a participar deste importante momento de conclusão da formação acadêmica do aluno.",
+    speaker: "Aluno: Pedro Oliveira"
+  }
 ];

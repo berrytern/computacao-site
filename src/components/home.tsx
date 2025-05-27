@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { DocenteCarousel } from './carroseldocentes';
 import { Header } from './header';
 import { Footer } from './footer'
 import "../index.css";
 import { AccessibilityWidget } from './acessibilidade';
 import { mockData } from '../mock';
+import { mockNews, mockEvents } from '../data/mockData';
 
 
 // Dados mockados
@@ -13,11 +14,11 @@ import { mockData } from '../mock';
 
 export function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+  const navigate = useNavigate()
   // Efeito para o slider automático
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % mockData.news.length);
+      setCurrentSlide((prev) => (prev + 1) % mockNews.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -32,26 +33,26 @@ export function HomePage() {
           aria-label="Notícias em destaque"
           aria-roledescription="carrossel"
         >
-          {mockData.news.map((item, index) => (
+          {mockNews.map((item, index) => (
             <div 
               key={item.id}
               className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${item.image})`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${item.imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
               }}
               role="group"
               aria-roledescription="slide"
-              aria-label={`Slide ${index + 1} de ${mockData.news.length}: ${item.title}`}
+              aria-label={`Slide ${index + 1} de ${mockNews.length}: ${item.title}`}
               aria-hidden={index !== currentSlide}
             >
               <div className="container mx-auto px-4 h-full flex items-center">
                 <div className="max-w-2xl text-white">
                   <span className="bg-maroon-700 text-white px-2 py-1 text-sm rounded">{item.date}</span>
                   <h2 className="text-4xl font-bold mt-4 mb-2">{item.title}</h2>
-                  <p className="text-xl mb-6">{item.excerpt}</p>
-                  <button className="bg-gray-200 text-black px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+                  <p className="text-xl mb-6">{item.summary}</p>
+                  <button className="bg-gray-200 text-black px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition cursor-pointer" onClick={()=>navigate('/noticias/'+item.id)}>
                     Leia mais
                   </button>
                 </div>
@@ -61,7 +62,7 @@ export function HomePage() {
           
           {/* Slider Controls */}
           <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2" role="tablist">
-            {mockData.news.map((_, index) => (
+            {mockNews.map((_, index) => (
               <button 
                 key={index}
                 onClick={() => setCurrentSlide(index)}
@@ -128,17 +129,17 @@ export function HomePage() {
               <div className="md:w-1/2">
                 <h2 className="text-3xl font-bold mb-8 text-maroon-800">Notícias</h2>
                 <div className="space-y-6">
-                  {mockData.news.map(item => (
+                  {mockNews.map(item => (
                     <div key={item.id} className="flex border-b border-gray-200 pb-6">
                       <img 
-                        src={item.image} 
+                        src={item.imageUrl} 
                         alt={item.title}
                         className="w-24 h-24 object-cover rounded-md mr-4"
                       />
                       <div>
                         <span className="text-sm text-gray-500">{item.date}</span>
                         <h3 className="font-bold text-lg mb-1 hover:text-maroon-700 transition cursor-pointer">{item.title}</h3>
-                        <p className="text-gray-600 text-sm">{item.excerpt}</p>
+                        <p className="text-gray-600 text-sm">{item.summary}</p>
                       </div>
                     </div>
                   ))}
@@ -155,7 +156,7 @@ export function HomePage() {
               <div className="md:w-1/2">
                 <h2 className="text-3xl font-bold mb-8 text-maroon-800">Próximos Eventos</h2>
                 <div className="space-y-6">
-                  {mockData.events.map(event => (
+                  {mockEvents.map(event => (
                     <div key={event.id} className="bg-gray-50 p-4 rounded-lg hover:shadow-md transition">
                       <div className="flex items-start">
                         <div className="bg-maroon-700 text-gray rounded-md p-2 text-center mr-4 min-w-[60px]">
@@ -163,7 +164,7 @@ export function HomePage() {
                           <span className="block text-sm">{event.date.split('/')[1]}</span>
                         </div>
                         <div>
-                          <h3 className="font-bold text-lg mb-1">{event.title}</h3>
+                          <h3 className="font-bold text-lg mb-1 cursor-pointer" onClick={()=>{navigate('/eventos/'+event.id)}}>{event.title}</h3>
                           <p className="text-gray-600 text-sm mb-1">
                             <span className="font-medium">Horário:</span> {event.time}
                           </p>
