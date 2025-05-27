@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 export function Header(props: any) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
+    <div className="bg-gray-50 text-gray-800 font-sans">
     <header className="bg-white shadow-md">
     <div className="container mx-auto px-4">
     <div className="flex justify-between items-center py-4">
@@ -60,5 +61,5 @@ export function Header(props: any) {
         </div>
     )}
     </div>
-    </header>)
+    </header></div>)
 }

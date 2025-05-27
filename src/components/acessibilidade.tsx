@@ -141,7 +141,6 @@ export function AccessibilityWidget() {
         // Função para ler os chunks sequencialmente
         const readChunks = (index) => {
             if (index >= textChunks.length) {
-                console.log(isPaused, isReading)
                 // Leitura concluída
                 setIsReading(false);
                 setIsPaused(false);
@@ -182,7 +181,6 @@ export function AccessibilityWidget() {
             // Iniciar leitura deste chunk
             window.speechSynthesis.speak(utterance);
         };
-        console.log(isPaused, isReading)
         // Iniciar a leitura a partir do chunk correto
         readChunks(startChunkIndex);
         setIsReading(true);
@@ -234,7 +232,7 @@ export function AccessibilityWidget() {
     return (
         <div className="fixed bottom-4 right-4 z-50">
             <button 
-                className="bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
+                className="bg-blue-600 text-gray p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
                 aria-label="Opções de acessibilidade"
                 aria-expanded={isOpen}
                 onClick={() => setIsOpen(!isOpen)}
@@ -250,22 +248,22 @@ export function AccessibilityWidget() {
                     role="dialog"
                     aria-label="Opções de acessibilidade"
                 >
-                    <h3 className="font-bold mb-4 text-lg" id="accessibility-title">Acessibilidade</h3>
+                    <h3 className="font-bold mb-4 text-lg text-gray-800" id="accessibility-title">Acessibilidade</h3>
                     
                     <div className="mb-4">
-                        <label htmlFor="font-size" className="block mb-2 font-medium">Tamanho da fonte:</label>
+                        <label htmlFor="font-size" className="block mb-2 font-medium text-gray-800">Tamanho da fonte:</label>
                         <div className="flex items-center">
                             <button 
                                 onClick={() => setFontSize(Math.max(100, fontSize - 10))}
-                                className="px-3 py-1 bg-gray-200 rounded-l hover:bg-gray-300 transition"
+                                className="px-3 py-1 bg-gray-200 rounded-l hover:bg-gray-300 transition text-gray-800"
                                 aria-label="Diminuir fonte"
                             >
                                 A-
                             </button>
-                            <span className="px-3 py-1 bg-gray-100 text-center flex-1">{fontSize}%</span>
+                            <span className="px-3 py-1 bg-gray-100 text-center flex-1 text-gray-800">{fontSize}%</span>
                             <button 
                                 onClick={() => setFontSize(Math.min(200, fontSize + 10))}
-                                className="px-3 py-1 bg-gray-200 rounded-r hover:bg-gray-300 transition"
+                                className="px-3 py-1 bg-gray-200 rounded-r hover:bg-gray-300 transition text-gray-800"
                                 aria-label="Aumentar fonte"
                             >
                                 A+
@@ -282,28 +280,28 @@ export function AccessibilityWidget() {
                                 className="mr-2 h-4 w-4"
                                 id="high-contrast"
                             />
-                            <span className="font-medium">Alto contraste</span>
+                            <span className="font-medium text-gray-800">Alto contraste</span>
                         </label>
                     </div>
                     
                     {/* Controle de velocidade de leitura */}
                     <div className="mb-4">
-                        <label htmlFor="reading-rate" className="block mb-2 font-medium">Velocidade de leitura:</label>
+                        <label htmlFor="reading-rate" className="block mb-2 font-medium text-gray-800">Velocidade de leitura:</label>
                         <div className="flex items-center">
                             <button 
                                 onClick={() => handleRateChange(readingRate - 0.1)}
-                                className="px-3 py-1 bg-gray-200 rounded-l hover:bg-gray-300 transition"
+                                className="px-3 py-1 bg-gray-200 rounded-l hover:bg-gray-300 transition text-gray-800"
                                 aria-label="Diminuir velocidade"
                                 disabled={readingRate <= 0.5}
                             >
                                 -
                             </button>
-                            <span className="px-3 py-1 bg-gray-100 text-center flex-1">
+                            <span className="px-3 py-1 bg-gray-100 text-center flex-1 text-gray-800">
                                 {readingRate.toFixed(1)}x
                             </span>
                             <button 
                                 onClick={() => handleRateChange(readingRate + 0.1)}
-                                className="px-3 py-1 bg-gray-200 rounded-r hover:bg-gray-300 transition"
+                                className="px-3 py-1 bg-gray-200 rounded-r hover:bg-gray-300 transition text-gray-800"
                                 aria-label="Aumentar velocidade"
                                 disabled={readingRate >= 2.0}
                             >

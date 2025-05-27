@@ -7,7 +7,6 @@ import { Footer } from './footer';
 export const NotFound = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans flex flex-col">
-      <Header />
       <main className="flex-grow flex items-center justify-center py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-9xl font-bold text-maroon-700 mb-4">404</h1>
@@ -23,7 +22,6 @@ export const NotFound = () => {
           </Link>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
