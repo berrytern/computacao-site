@@ -103,9 +103,9 @@ export function HomePage() {
               </div>
               <div className="md:w-1/2">
                 <img 
-                  src="https://images.unsplash.com/photo-1581092921461-39b9d08a9b92?q=80&w=2070" 
-                  alt="Estudantes de computação" 
-                  className="rounded-lg shadow-lg w-full h-auto object-cover"
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070" 
+                alt="Estudantes de computação" 
+                className="rounded-lg shadow-lg w-full h-auto object-cover"
                 />
               </div>
             </div>
