@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DocenteCarousel } from './carroseldocentes';
-import { Header } from './header';
-import { Footer } from './footer'
 import "../index.css";
-import { AccessibilityWidget } from './acessibilidade';
 import { mockData } from '../mock';
 import { mockNews, mockEvents } from '../data/mockData';
 
@@ -29,51 +26,61 @@ export function HomePage() {
       <main>
         {/* Hero Banner/Slider */}
         <section 
-          className="relative h-[500px] overflow-hidden" 
-          aria-label="Notícias em destaque"
-          aria-roledescription="carrossel"
+        className="relative h-[500px] overflow-hidden" 
+        aria-label="Notícias em destaque"
+        aria-roledescription="carrossel"
         >
-          {mockNews.map((item, index) => (
+        {mockNews.map((item, index) => {
+            // Log para depuração
+            
+            return (
             <div 
-              key={item.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-              style={{
+                key={item.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+                style={{
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${item.imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
-              }}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`Slide ${index + 1} de ${mockNews.length}: ${item.title}`}
-              aria-hidden={index !== currentSlide}
+                }}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`Slide ${index + 1} de ${mockNews.length}: ${item.title}`}
+                aria-hidden={index !== currentSlide}
             >
-              <div className="container mx-auto px-4 h-full flex items-center">
+                <div className="container mx-auto px-4 h-full flex items-center">
                 <div className="max-w-2xl text-white">
-                  <span className="bg-maroon-700 text-white px-2 py-1 text-sm rounded">{item.date}</span>
-                  <h2 className="text-4xl font-bold mt-4 mb-2">{item.title}</h2>
-                  <p className="text-xl mb-6">{item.summary}</p>
-                  <button className="bg-gray-200 text-black px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition cursor-pointer" onClick={()=>navigate('/noticias/'+item.id)}>
+                    <span className="bg-maroon-700 text-white px-2 py-1 text-sm rounded">{item.date}</span>
+                    <h2 className="text-4xl font-bold mt-4 mb-2">{item.title}</h2>
+                    <p className="text-xl mb-6">{item.summary}</p>
+                    <Link 
+                    to={`/noticias/${item.id}`} 
+                    className="inline-block bg-gray-200 text-black px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition"
+                    >
                     Leia mais
-                  </button>
+                    </Link>
                 </div>
-              </div>
+                </div>
             </div>
-          ))}
-          
-          {/* Slider Controls */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2" role="tablist">
+            );
+        })}
+        
+        {/* Slider Controls */}
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2 z-20" role="tablist">
             {mockNews.map((_, index) => (
-              <button 
+            <button 
                 key={index}
-                onClick={() => setCurrentSlide(index)}
+                onClick={() => {
+                console.log(`Mudando para slide ${index}`);
+                setCurrentSlide(index);
+                }}
                 className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-white' : 'bg-gray-400 cursor-pointer'}`}
                 aria-label={`Ir para slide ${index + 1}`}
                 aria-selected={index === currentSlide}
                 role="tab"
                 aria-controls={`slide-${index}`}
-              />
+            />
             ))}
-          </div>
+        </div>
         </section>
 
         {/* About Section */}
@@ -130,27 +137,37 @@ export function HomePage() {
                 <h2 className="text-3xl font-bold mb-8 text-maroon-800">Notícias</h2>
                 <div className="space-y-6">
                   {mockNews.map(item => (
-                    <div key={item.id} className="flex border-b border-gray-200 pb-6">
-                      <img 
-                        src={item.imageUrl} 
-                        alt={item.title}
-                        className="w-24 h-24 object-cover rounded-md mr-4"
-                      />
-                      <div>
-                        <span className="text-sm text-gray-500">{item.date}</span>
-                        <h3 className="font-bold text-lg mb-1 hover:text-maroon-700 transition cursor-pointer">{item.title}</h3>
-                        <p className="text-gray-600 text-sm">{item.summary}</p>
-                      </div>
+                <div key={item.id} className="flex border-b border-gray-200 pb-6">
+                    <img 
+                    src={item.imageUrl} 
+                    alt={item.title}
+                    className="w-24 h-24 object-cover rounded-md mr-4"
+                    />
+                    <div>
+                    <span className="text-sm text-gray-500">{item.date}</span>
+                    <h3 
+                        className="font-bold text-lg mb-1 hover:text-maroon-700 transition cursor-pointer"
+                    >
+                        {item.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm">{item.summary}</p>
+                    <button className="cursor-pointer" onClick={() => {
+                        console.log('Navegando para notícia ID:', item.id);
+                        navigate('/noticias/' + item.id);
+                        }}>
+                        Leia mais
+                        </button>
                     </div>
-                  ))}
                 </div>
-                <button className="mt-6 text-maroon-700 font-medium hover:text-maroon-900 transition flex items-center">
-                  Ver todas as notícias
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
+                ))}
+            </div>
+            <button className="mt-6 text-maroon-700 font-medium hover:text-maroon-900 transition flex items-center">
+                Ver todas as notícias
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+            </button>
+            </div>
               
               {/* Events Column */}
               <div className="md:w-1/2">
