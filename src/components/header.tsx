@@ -278,7 +278,7 @@ export function Header(props: any) {
                         
                         {/* Botão de atalhos de teclado */}
                         <button
-                            className="hidden md:block text-gray-700 hover:text-maroon-700 mr-4"
+                            className="hidden lg:block text-gray-700 hover:text-maroon-700 mr-4"
                             onClick={() => setShowShortcutsInfo(true)}
                             aria-label="Mostrar atalhos de teclado"
                             title="Atalhos de teclado (Alt + /)"
@@ -290,7 +290,7 @@ export function Header(props: any) {
                         </button>
                         
                         {/* Desktop Menu com Links Acessíveis */}
-                        <nav className="hidden md:flex space-x-6" aria-label="Menu de navegação principal">
+                        <nav className="hidden lg:flex space-x-6" aria-label="Menu de navegação principal">
                             <AccessibleLink to={getPath("/")} className="text-maroon-700 font-medium hover:text-maroon-900 transition">Início</AccessibleLink>
                             <AccessibleLink to={getPath("/#sobre")} className="text-gray-700 font-medium hover:text-maroon-700 transition">Sobre</AccessibleLink>
                             <AccessibleLink to={getPath("/noticias")} className="text-gray-700 font-medium hover:text-maroon-700 transition">Notícias</AccessibleLink>
@@ -304,7 +304,7 @@ export function Header(props: any) {
                         {/* Mobile Menu Button com indicador de atalho */}
                         <button 
                             ref={menuButtonRef}
-                            className="md:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-400 hover:text-maroon-700 hover:border-maroon-700 transition"
+                            className="lg:hidden flex items-center px-3 py-2 border rounded text-gray-700 border-gray-400 hover:text-maroon-700 hover:border-maroon-700 transition"
                             onClick={toggleMenu}
                             aria-expanded={isMobileMenuOpen}
                             aria-controls="mobile-menu"
@@ -324,7 +324,7 @@ export function Header(props: any) {
                     <div 
                         id="mobile-menu" 
                         ref={mobileMenuRef}
-                        className={`md:hidden py-4 border-t border-gray-200 ${isMobileMenuOpen ? 'block' : 'hidden'}`}
+                        className={`lg:hidden py-4 border-t border-gray-200 ${isMobileMenuOpen ? 'block' : 'hidden'}`}
                         role="navigation" 
                         aria-label="Menu de navegação mobile"
                         aria-labelledby="mobile-menu-button"
