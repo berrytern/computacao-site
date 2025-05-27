@@ -15,6 +15,12 @@ import { Formulario } from './components/areaALuno/formulario';
 import { NotFound } from './components/notFound';
 import { HomePage } from './components/home';
 
+// Importe as novas páginas
+import { NoticiasPage } from './components/NoticiasPage';
+import { NoticiaDetalhePage } from './components/NoticiaDetalhePage';
+import { EventosPage } from './components/EventosPage';
+import { EventoDetalhePage } from './components/EventoDetalhePage';
+
 
 // Dados mockados
 
@@ -32,7 +38,10 @@ function App() {
         <Route path="/area-aluno/calendario" element={<Calendario />} />
         <Route path="/area-aluno/formularios" element={<Formulario />} />
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
-
+        <Route path="/noticias" element={<NoticiasPage />} />
+        <Route path="/noticias/:id" element={<NoticiaDetalhePage />} /> {/* Rota para detalhes da notícia */}
+        <Route path="/eventos" element={<EventosPage />} />
+        <Route path="/eventos/:id" element={<EventoDetalhePage />} /> {/* Rota para detalhes do evento */}
         {/* Outras rotas seriam adicionadas aqui */}
         <Route path="*" element={<NotFound />} />
       </Routes>
