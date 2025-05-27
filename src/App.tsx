@@ -12,6 +12,7 @@ import { Calendario } from './components/areaALuno/calendario';
 import { AccessibilityWidget } from './components/acessibilidade';
 import { mockData } from './mock';
 import { Formulario } from './components/areaALuno/formulario';
+import { NotFound } from './components/notFound';
 
 
 // Dados mockados
@@ -28,10 +29,10 @@ function App() {
         <Route path="/area-aluno/estrutura-curricular" element={<EstruturaCurricularPage />} />
         <Route path="/area-aluno/calendario" element={<Calendario />} />
         <Route path="/area-aluno/formularios" element={<Formulario />} />
-        // Se optar por páginas dedicadas para disciplinas:
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
 
         {/* Outras rotas seriam adicionadas aqui */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
