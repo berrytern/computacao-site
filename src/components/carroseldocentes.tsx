@@ -34,7 +34,7 @@ export function DocenteCarousel(props: any) {
                 {/* Botão Anterior */}
                 <button 
                 onClick={prevPage}
-                className="absolute left-0 z-10 bg-white text-maroon-700 p-3 rounded-full shadow-md hover:bg-maroon-700 hover:text-white transition-colors duration-300 focus:outline-none -ml-4"
+                className="absolute left-0 z-10 bg-white text-maroon-700 p-3 rounded-full cursor-pointer hover:text-gray-400 shadow-md hover:bg-maroon-700  transition-colors duration-300 focus:outline-none -ml-4"
                 aria-label="Professores anteriores"
                 >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,8 +73,8 @@ export function DocenteCarousel(props: any) {
                     <button
                         key={index}
                         onClick={() => setCurrentPage(index)}
-                        className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                        index === currentPage ? 'bg-maroon-700' : 'bg-gray-300'
+                        className={`w-3 h-3 rounded-full transition-colors duration-300  ${
+                        index === currentPage ? 'bg-gray-600' : 'bg-gray-300 cursor-pointer'
                         }`}
                         aria-label={`Ir para página ${index + 1}`}
                     />
@@ -85,7 +85,7 @@ export function DocenteCarousel(props: any) {
                 {/* Botão Próximo */}
                 <button 
                 onClick={nextPage}
-                className="absolute right-0 z-10 bg-white text-maroon-700 p-3 rounded-full shadow-md hover:bg-maroon-700 hover:text-white transition-colors duration-300 focus:outline-none -mr-4"
+                className="absolute right-0 z-10 bg-white text-maroon-700 p-3 rounded-full shadow-md hover:bg-maroon-700 cursor-pointer hover:text-gray-400 transition-colors duration-300 focus:outline-none -mr-4"
                 aria-label="Próximos professores"
                 >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

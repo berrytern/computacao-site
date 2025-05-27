@@ -48,3 +48,165 @@ body::before {
     animation: none !important;
   }
 }
+
+
+/* Estilos aprimorados para o modo de alto contraste */
+.accessibility-high-contrast {
+  /* Reset geral para garantir que nossas regras tenham prioridade */
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+  
+  /* Fundo preto e texto branco para o corpo */
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+/* Forçar cores para todos os elementos de texto */
+.accessibility-high-contrast h1,
+.accessibility-high-contrast h2,
+.accessibility-high-contrast h3,
+.accessibility-high-contrast h4,
+.accessibility-high-contrast h5,
+.accessibility-high-contrast h6,
+.accessibility-high-contrast p,
+.accessibility-high-contrast span,
+.accessibility-high-contrast div,
+.accessibility-high-contrast li,
+.accessibility-high-contrast td,
+.accessibility-high-contrast th,
+.accessibility-high-contrast label {
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+  text-shadow: none !important;
+}
+
+/* Elementos específicos no modo de alto contraste */
+.accessibility-high-contrast header,
+.accessibility-high-contrast footer,
+.accessibility-high-contrast nav,
+.accessibility-high-contrast aside {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+  border: 1px solid rgb(255 255 255 / 0.5) !important;
+}
+
+/* Seções alternadas para melhor distinção */
+.accessibility-high-contrast section:nth-child(odd) {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
+}
+
+.accessibility-high-contrast section:nth-child(even) {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+}
+
+/* Links em alto contraste */
+.accessibility-high-contrast a,
+.accessibility-high-contrast a * {
+  --tw-text-opacity: 1 !important;
+  color: rgb(252 211 77 / var(--tw-text-opacity)) !important;
+  text-decoration: underline !important;
+}
+
+/* Botões em alto contraste */
+.accessibility-high-contrast button:not(.bg-blue-600):not(.bg-red-600),
+.accessibility-high-contrast [role="button"] {
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+  color: rgb(0 0 0 / var(--tw-text-opacity)) !important;
+  border: 2px solid rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+  text-shadow: none !important;
+}
+
+/* Botões de acessibilidade mantêm suas cores */
+.accessibility-high-contrast .bg-blue-600 {
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity)) !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.accessibility-high-contrast .bg-red-600 {
+  background-color: rgb(220 38 38 / var(--tw-bg-opacity)) !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+/* Imagens em alto contraste */
+.accessibility-high-contrast img {
+  filter: grayscale(100%) contrast(120%) !important;
+  border: 1px solid rgb(255 255 255 / 0.5) !important;
+}
+
+/* Campos de formulário em alto contraste */
+.accessibility-high-contrast input,
+.accessibility-high-contrast select,
+.accessibility-high-contrast textarea {
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+  border: 2px solid rgb(255 255 255 / 0.7) !important;
+}
+
+/* Foco em elementos interativos */
+.accessibility-high-contrast a:focus,
+.accessibility-high-contrast button:focus,
+.accessibility-high-contrast input:focus,
+.accessibility-high-contrast select:focus,
+.accessibility-high-contrast textarea:focus {
+  outline: 3px solid rgb(252 211 77) !important;
+  outline-offset: 2px !important;
+}
+
+/* Correções específicas para elementos com fundo de imagem */
+.accessibility-high-contrast [style*="background-image"] {
+  background-image: none !important;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity)) !important;
+}
+
+/* Correções para cards e elementos com sombras */
+.accessibility-high-contrast .shadow-lg,
+.accessibility-high-contrast .shadow-md,
+.accessibility-high-contrast .shadow-sm,
+.accessibility-high-contrast .shadow-xl,
+.accessibility-high-contrast [class*="shadow"] {
+  --tw-shadow: 0 0 #0000 !important;
+  --tw-shadow-colored: 0 0 #0000 !important;
+  box-shadow: none !important;
+  border: 1px solid rgb(255 255 255 / 0.5) !important;
+}
+
+/* Correções para gradientes */
+.accessibility-high-contrast [class*="bg-gradient"] {
+  background-image: none !important;
+}
+
+/* Garantir que textos em fundos claros sejam legíveis */
+.accessibility-high-contrast .bg-white,
+.accessibility-high-contrast .bg-gray-50,
+.accessibility-high-contrast .bg-gray-100,
+.accessibility-high-contrast .bg-gray-200,
+.accessibility-high-contrast [class*="bg-white"],
+.accessibility-high-contrast [class*="bg-gray-50"],
+.accessibility-high-contrast [class*="bg-gray-100"],
+.accessibility-high-contrast [class*="bg-gray-200"] {
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
+}
+
+/* Garantir que textos em elementos coloridos sejam legíveis */
+.accessibility-high-contrast [class*="text-gray"],
+.accessibility-high-contrast [class*="text-slate"],
+.accessibility-high-contrast [class*="text-zinc"],
+.accessibility-high-contrast [class*="text-neutral"],
+.accessibility-high-contrast [class*="text-stone"] {
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+/* Corrigir cores do carrossel */
+.accessibility-high-contrast .opacity-0,
+.accessibility-high-contrast .opacity-100 {
+  opacity: 1 !important;
+}
+
+.accessibility-high-contrast [aria-hidden="true"] {
+  display: none !important;
+}
