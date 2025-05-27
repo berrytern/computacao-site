@@ -5,10 +5,13 @@
   "type": "module",
   "main": "src/index.tsx",
   "module": "src/index.tsx",
+  "homepage": "https://berrytern.github.io/computacao-site",
   "scripts": {
     "dev": "bun --hot src/index.tsx",
     "start": "NODE_ENV=production bun src/index.tsx",
-    "build": "bun run build.ts"
+    "build": "bun run build.ts",
+    "predeploy": "bun run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
@@ -20,8 +23,9 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/bun": "latest"
+    "gh-pages": "^6.3.0"
   }
 }

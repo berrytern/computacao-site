@@ -5,11 +5,15 @@ import { Footer } from '../footer';
 import requerimentoPdf from './requerimento.pdf';
 
 export function Formulario() {
+  // Detecta se estamos em produção (GitHub Pages)
+  const isProduction = process.env.NODE_ENV === 'production';
+  // Base path para GitHub Pages
+  const pdfPath = isProduction ? '/computacao-site'+requerimentoPdf.slice(1) : requerimentoPdf;
   const PDFViewer = () => {
     return (
       <div className="my-8">
         <iframe
-          src={requerimentoPdf}
+          src={pdfPath}
           width="100%"
           height="900px"
           title="Requerimento"
