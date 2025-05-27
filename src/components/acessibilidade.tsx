@@ -193,7 +193,7 @@ export function AccessibilityWidget() {
     const togglePause = () => {
         if (!('speechSynthesis' in window) || !isReading) return;
         
-        if (!isPaused || isReading) {
+        if (!isPaused) {
             // Pausar a leitura
             window.speechSynthesis.cancel();
             setIsPaused(true);

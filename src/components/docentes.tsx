@@ -8,7 +8,7 @@ export function DocentesPage(props: any) {
     return (
       <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
         {/* Header */}
-        <Header isMobileMenuOpen={props.isMobileMenuOpen} setIsMobileMenuOpen={props.setIsMobileMenuOpen}/>
+        <Header/>
   
         <main>
           {/* Docentes Section */}

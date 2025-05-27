@@ -41,7 +41,6 @@ function App() {
 
 function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Efeito para o slider automático
   useEffect(() => {
@@ -54,7 +53,7 @@ function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       {/* Header*/}
-      <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen}/>
+      <Header/>
       <main>
         {/* Hero Banner/Slider */}
         <section 

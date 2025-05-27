@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Header } from './header'; // Importe o Header se quiser que ele apareça na página da Área do Aluno
 import { Footer } from './footer'; // Importe o Footer
@@ -57,7 +57,7 @@ export function AreaAlunoPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
-      <Header /> {/* Inclua o Header aqui */}
+      <Header/>
       <main className="container mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold text-center text-maroon-800 mb-10">Área do Aluno</h1>
         <p className="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">

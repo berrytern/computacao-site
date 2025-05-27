@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // Componente de Header
 export function Header(props: any) {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
     <header className="bg-white shadow-md">
     <div className="container mx-auto px-4">
@@ -36,7 +37,7 @@ export function Header(props: any) {
         {/* Mobile Menu Button */}
         <button 
         className="md:hidden text-gray-700"
-        onClick={() => props.setIsMobileMenuOpen(!props.isMobileMenuOpen)}
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -45,7 +46,7 @@ export function Header(props: any) {
     </div>
     
     {/* Mobile Menu */}
-    {props.isMobileMenuOpen && (
+    {isMobileMenuOpen && (
         <div className="md:hidden py-4 border-t border-gray-200">
         <div className="flex flex-col space-y-3">
             <Link to="/" className="text-maroon-700 font-medium hover:text-maroon-900 transition">Início</Link>
@@ -54,7 +55,7 @@ export function Header(props: any) {
             {/*<Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>*/}
             <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
             <Link to="/#contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
-            <Link to="/area-aluno" className="bg-maroon-700 text-white px-4 py-2 rounded-md hover:bg-maroon-800 transition text-center">Área do Aluno</Link>
+            <Link to="/area-aluno" className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800 transition text-center">Área do Aluno</Link>
         </div>
         </div>
     )}
