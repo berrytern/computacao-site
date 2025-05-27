@@ -65,7 +65,7 @@ export function HomePage() {
               <button 
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-white' : 'bg-gray-400'}`}
+                className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-white' : 'bg-gray-400 cursor-pointer'}`}
                 aria-label={`Ir para slide ${index + 1}`}
                 aria-selected={index === currentSlide}
                 role="tab"
