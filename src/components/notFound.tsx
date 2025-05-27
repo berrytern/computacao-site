@@ -9,7 +9,7 @@ export const NotFound = () => {
         // Redireciona para a página inicial após 5 segundos
         const timer = setTimeout(() => {
             navigate('/');
-        }, 4000);
+        }, 2000);
         
         // Limpa o timer se o componente for desmontado
         return () => clearTimeout(timer);
