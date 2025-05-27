@@ -88,16 +88,44 @@ return (
 
 // Componente para exibir instruções de atalhos de teclado
 function KeyboardShortcutsInfo({ isVisible, onClose }) {
+    const modalRef = useRef<HTMLDivElement>(null);
+    // Fechar ao clicar fora ou pressionar ESC
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    }
+
+    if (isVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isVisible, onClose]);
 if (!isVisible) return null;
 
 return (
     <div 
-    className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+    className="fixed inset-0 bg-custom-black z-50 flex items-center justify-center"
     role="dialog"
     aria-modal="true"
     aria-labelledby="shortcuts-title"
     >
-    <div className="bg-white p-6 rounded-lg max-w-md w-full">
+    <div ref={modalRef}
+    className="bg-white p-6 rounded-lg max-w-md w-full"
+    onClick={(e)=> e.stopPropagation()}
+    >
     <h2 id="shortcuts-title" className="text-xl font-bold mb-4">Atalhos de Teclado</h2>
     <ul className="space-y-2 mb-4">
     <li><kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded">Alt + M</kbd> - Abrir/fechar menu de navegação</li>

@@ -49,7 +49,9 @@ body::before {
   }
 }
 
-
+.bg-custom-black {
+  background-color: #0009;
+}
 /* Estilos aprimorados para o modo de alto contraste */
 .accessibility-high-contrast {
   /* Reset geral para garantir que nossas regras tenham prioridade */
