@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { getPath } from '@/utils/tools';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 
 // Componente de carrossel de docentes para a página principal
@@ -95,7 +97,7 @@ export function DocenteCarousel(props: any) {
             </div>
             
             <div className="text-center mt-8">
-                <Link to="/docentes" className="inline-block bg-maroon-700 text-gray px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
+                <Link to={getPath("/docentes")} className="inline-block bg-maroon-700 text-gray px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
                 Ver todos os docentes
                 </Link>
             </div>

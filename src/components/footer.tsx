@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Header } from './header';
+import { getPath } from '@/utils/tools';
 
 export function Footer(prop:any){
 
@@ -37,24 +38,24 @@ export function Footer(prop:any){
             <div>
               <h3 className="text-xl font-bold mb-4">Links Rápidos</h3>
               <ul className="space-y-2">
-                <li><Link to="/#sobre" className="text-gray-400 hover:text-white transition">Sobre o Curso</Link></li>
-                <li><Link to="/docentes" className="text-gray-400 hover:text-white transition">Corpo Docente</Link></li>
-                <li><Link to="/disciplinas" className="text-gray-400 hover:text-white transition">Grade Curricular</Link></li>
-                <li><Link to="/projetos" className="text-gray-400 hover:text-white transition">Projetos de Pesquisa</Link></li>
-                <li><Link to="/eventos" className="text-gray-400 hover:text-white transition">Eventos</Link></li>
-                <li><Link to="/#contato" className="text-gray-400 hover:text-white transition">Contato</Link></li>
+                <li><Link to={getPath("/#sobre")} className="text-gray-400 hover:text-white transition">Sobre o Curso</Link></li>
+                <li><Link to={getPath("/docentes")} className="text-gray-400 hover:text-white transition">Corpo Docente</Link></li>
+                <li><Link to={getPath("/disciplinas")} className="text-gray-400 hover:text-white transition">Grade Curricular</Link></li>
+                <li><Link to={getPath("/projetos")} className="text-gray-400 hover:text-white transition">Projetos de Pesquisa</Link></li>
+                <li><Link to={getPath("/eventos")} className="text-gray-400 hover:text-white transition">Eventos</Link></li>
+                <li><Link to={getPath("/#contato")} className="text-gray-400 hover:text-white transition">Contato</Link></li>
               </ul>
             </div>
             
             <div>
               <h3 className="text-xl font-bold mb-4">Área do Aluno</h3>
               <ul className="space-y-2">
-                <li><Link to="/area-aluno/calendario" className="text-gray-400 hover:text-white transition">Calendário Acadêmico</Link></li>
-                <li><Link to="/area-aluno/formularios" className="text-gray-400 hover:text-white transition">Formulários</Link></li>
-                <li><Link to="/area-aluno/estagios" className="text-gray-400 hover:text-white transition">Estágios</Link></li>
-                <li><Link to="/area-aluno/tcc" className="text-gray-400 hover:text-white transition">TCC</Link></li>
-                <li><Link to="/area-aluno/monitoria" className="text-gray-400 hover:text-white transition">Monitoria</Link></li>
-                <li><Link to="/area-aluno/iniciacao-cientifica" className="text-gray-400 hover:text-white transition">Iniciação Científica</Link></li>
+                <li><Link to={getPath("/area-aluno/calendario")} className="text-gray-400 hover:text-white transition">Calendário Acadêmico</Link></li>
+                <li><Link to={getPath("/area-aluno/formularios")} className="text-gray-400 hover:text-white transition">Formulários</Link></li>
+                <li><Link to={getPath("/area-aluno/estagios")} className="text-gray-400 hover:text-white transition">Estágios</Link></li>
+                <li><Link to={getPath("/area-aluno/tcc")} className="text-gray-400 hover:text-white transition">TCC</Link></li>
+                <li><Link to={getPath("/area-aluno/monitoria")} className="text-gray-400 hover:text-white transition">Monitoria</Link></li>
+                <li><Link to={getPath("/area-aluno/iniciacao-cientifica")} className="text-gray-400 hover:text-white transition">Iniciação Científica</Link></li>
               </ul>
             </div>
             

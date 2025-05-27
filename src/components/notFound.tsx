@@ -1,6 +1,8 @@
 // components/NotFound.jsx
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getPath } from '../utils/tools';
+
 
 export const NotFound = () => {
     const navigate = useNavigate();
@@ -8,8 +10,8 @@ export const NotFound = () => {
     useEffect(() => {
         // Redireciona para a página inicial após 5 segundos
         const timer = setTimeout(() => {
-            navigate('/');
-        }, 2000);
+            navigate(getPath('/'));
+        }, 1000);
         
         // Limpa o timer se o componente for desmontado
         return () => clearTimeout(timer);

@@ -4,6 +4,7 @@ import { DocenteCarousel } from './carroseldocentes';
 import "../index.css";
 import { mockData } from '../mock';
 import { mockNews, mockEvents } from '../data/mockData';
+import { getPath } from '@/utils/tools';
 
 
 // Dados mockados
@@ -53,7 +54,7 @@ export function HomePage() {
                     <h2 className="text-4xl font-bold mt-4 mb-2">{item.title}</h2>
                     <p className="text-xl mb-6">{item.summary}</p>
                     <Link 
-                    to={`/noticias/${item.id}`} 
+                    to={getPath(`/noticias/${item.id}`)} 
                     className="inline-block bg-gray-200 text-black px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition"
                     >
                     Leia mais
@@ -70,7 +71,6 @@ export function HomePage() {
             <button 
                 key={index}
                 onClick={() => {
-                console.log(`Mudando para slide ${index}`);
                 setCurrentSlide(index);
                 }}
                 className={`w-3 h-3 rounded-full ${index === currentSlide ? 'bg-white' : 'bg-gray-400 cursor-pointer'}`}
@@ -97,7 +97,7 @@ export function HomePage() {
                   Com uma infraestrutura moderna e corpo docente altamente qualificado, o curso oferece uma formação sólida, 
                   combinando teoria e prática através de projetos reais e parcerias com empresas do setor.
                 </p>
-                <Link to="/#sobre" className="inline-block bg-maroon-700 text-gray px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
+                <Link to={getPath("/#sobre")} className="inline-block bg-maroon-700 text-gray px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
                   Conheça mais
                 </Link>
               </div>
@@ -152,8 +152,7 @@ export function HomePage() {
                     </h3>
                     <p className="text-gray-600 text-sm">{item.summary}</p>
                     <button className="cursor-pointer" onClick={() => {
-                        console.log('Navegando para notícia ID:', item.id);
-                        navigate('/noticias/' + item.id);
+                        navigate(getPath(`/noticias/${item.id}`));
                         }}>
                         Leia mais
                         </button>

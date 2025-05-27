@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { EventItem } from '../data/mockData'; // Importa a interface e o tipo
+import { getPath } from '@/utils/tools';
 
 interface EventCardProps {
   event: EventItem;
@@ -20,7 +21,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
           <span className="font-medium">Hora:</span> {event.time}
         </p>
         <p className="text-gray-700 text-base mb-4 line-clamp-3">{event.summary}</p>
-        <Link to={`/eventos/${event.id}`} className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 ease-in-out">
+        <Link to={getPath(`/eventos/${event.id}`)} className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200 ease-in-out">
           Ver detalhes &rarr;
         </Link>
       </div>

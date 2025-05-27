@@ -20,28 +20,26 @@ import { NoticiasPage } from './components/NoticiasPage';
 import { NoticiaDetalhePage } from './components/NoticiaDetalhePage';
 import { EventosPage } from './components/EventosPage';
 import { EventoDetalhePage } from './components/EventoDetalhePage';
-
-
-// Dados mockados
+import { getPath } from './utils/tools';
 
 
 function App() {
   return (
-    <Router>
+    <Router aria-label="Conteúdo rolável">
       <ScrollToSection/>
       <Header/>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/docentes" element={<DocentesPage professors={mockData.professors} />} />
-        <Route path="/area-aluno" element={<AreaAlunoPage/>} />
-        <Route path="/area-aluno/estrutura-curricular" element={<EstruturaCurricularPage />} />
-        <Route path="/area-aluno/calendario" element={<Calendario />} />
-        <Route path="/area-aluno/formularios" element={<Formulario />} />
+        <Route path={getPath("/")} element={<HomePage/>} />
+        <Route path={getPath("/docentes")} element={<DocentesPage professors={mockData.professors} />} />
+        <Route path={getPath("/area-aluno")} element={<AreaAlunoPage/>} />
+        <Route path={getPath("/area-aluno/estrutura-curricular")} element={<EstruturaCurricularPage />} />
+        <Route path={getPath("/area-aluno/calendario")} element={<Calendario />} />
+        <Route path={getPath("/area-aluno/formularios")} element={<Formulario />} />
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
-        <Route path="/noticias" element={<NoticiasPage />} />
-        <Route path="/noticias/:id" element={<NoticiaDetalhePage />} /> {/* Rota para detalhes da notícia */}
-        <Route path="/eventos" element={<EventosPage />} />
-        <Route path="/eventos/:id" element={<EventoDetalhePage />} /> {/* Rota para detalhes do evento */}
+        <Route path={getPath("/noticias")} element={<NoticiasPage />} />
+        <Route path={getPath("/noticias/:id")} element={<NoticiaDetalhePage />} /> {/* Rota para detalhes da notícia */}
+        <Route path={getPath("/eventos")} element={<EventosPage />} />
+        <Route path={getPath("/eventos/:id")} element={<EventoDetalhePage />} /> {/* Rota para detalhes do evento */}
         {/* Outras rotas seriam adicionadas aqui */}
         <Route path="*" element={<NotFound />} />
       </Routes>

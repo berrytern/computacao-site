@@ -2,6 +2,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { mockNews } from '../data/mockData';
+import { getPath } from '@/utils/tools';
 
 export const NoticiaDetalhePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ export const NoticiaDetalhePage: React.FC = () => {
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
             <h1 className="text-3xl font-bold text-red-600 mb-4">Notícia não encontrada</h1>
             <p className="text-gray-600 mb-6">A notícia que você está procurando não existe ou foi removida.</p>
-            <Link to="/noticias" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300">
+            <Link to={getPath("/noticias")} className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300">
               Voltar para Notícias
             </Link>
           </div>
@@ -42,7 +43,7 @@ export const NoticiaDetalhePage: React.FC = () => {
             </div>
             
             <div className="mt-8 pt-6 border-t border-gray-200">
-              <Link to="/noticias" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+              <Link to={getPath("/noticias")} className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>

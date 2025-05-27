@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Header } from './header'; // Importe o Header se quiser que ele apareça na página da Área do Aluno
 import { Footer } from './footer'; // Importe o Footer
+import { getPath } from '@/utils/tools';
 
 export function AreaAlunoPage() {
   const studentAreaSections = [
@@ -65,7 +66,7 @@ export function AreaAlunoPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {studentAreaSections.map((section, index) => (
-            <Link to={section.link} key={index} className="block">
+            <Link to={getPath(section.link)} key={index} className="block">
               <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center h-full">
                 <div className="text-5xl mb-4">{section.icon}</div>
                 <h2 className="text-2xl font-bold text-maroon-700 mb-3">{section.title}</h2>
