@@ -25,6 +25,9 @@ export function Formulario() {
         <h1 className="text-4xl font-bold text-center text-maroon-800 mb-10">
           Formulários e Requerimento
         </h1>
+          <h2>
+            Formulário de requerimento geral - Deve ser preenchido, assinado e enviado para o e-mail da coordenação para qualquer solicitação geral.
+          </h2>
         <PDFViewer />
       </main>
       <Footer />
