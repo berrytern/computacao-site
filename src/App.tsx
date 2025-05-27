@@ -9,6 +9,7 @@ import { EstruturaCurricularPage } from './components/areaALuno/estruturaCurricu
 import { Footer } from './components/footer'
 import "./index.css";
 import { Calendario } from './components/areaALuno/calendario';
+import { AccessibilityWidget } from './components/acessibilidade';
 import { mockData } from './mock';
 
 // Dados mockados
@@ -32,141 +33,7 @@ function App() {
     </Router>
   );
 }
-function AccessibilityWidget() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [fontSize, setFontSize] = useState(100);
-  const [highContrast, setHighContrast] = useState(false);
-  const [isReading, setIsReading] = useState(false);
-  
-  // Aplicar mudanças ao documento
-  useEffect(() => {
-    document.documentElement.style.fontSize = `${fontSize}%`;
-    
-    // Aplicar alto contraste usando classes do Tailwind
-    if (highContrast) {
-      // Adicionar classes para modo de alto contraste
-      document.body.classList.add('accessibility-high-contrast');
-    } else {
-      // Remover classes do modo de alto contraste
-      document.body.classList.remove('accessibility-high-contrast');
-    }
-  }, [fontSize, highContrast]);
 
-  // Função para iniciar a leitura do conteúdo
-  const startReading = () => {
-    if ('speechSynthesis' in window) {
-      // Cancelar qualquer leitura em andamento
-      window.speechSynthesis.cancel();
-      
-      // Obter o conteúdo principal
-      const mainContent = document.querySelector('main').textContent;
-      const utterance = new SpeechSynthesisUtterance(mainContent);
-      utterance.lang = 'pt-BR';
-      
-      // Configurar evento para quando a leitura terminar
-      utterance.onend = () => {
-        setIsReading(false);
-      };
-      
-      // Iniciar leitura
-      window.speechSynthesis.speak(utterance);
-      setIsReading(true);
-    }
-  };
-
-  // Função para parar a leitura
-  const stopReading = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      setIsReading(false);
-    }
-  };
-
-  return (
-    <div className="fixed bottom-4 right-4 z-50">
-      <button 
-        className="bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
-        aria-label="Opções de acessibilidade"
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      </button>
-      
-      {isOpen && (
-        <div 
-          className="absolute bottom-16 right-0 bg-white p-4 rounded-lg shadow-xl border w-64" 
-          role="dialog"
-          aria-label="Opções de acessibilidade"
-        >
-          <h3 className="font-bold mb-4 text-lg" id="accessibility-title">Acessibilidade</h3>
-          
-          <div className="mb-4">
-            <label htmlFor="font-size" className="block mb-2 font-medium">Tamanho da fonte:</label>
-            <div className="flex items-center">
-              <button 
-                onClick={() => setFontSize(Math.max(100, fontSize - 10))}
-                className="px-3 py-1 bg-gray-200 rounded-l hover:bg-gray-300 transition"
-                aria-label="Diminuir fonte"
-              >
-                A-
-              </button>
-              <span className="px-3 py-1 bg-gray-100 text-center flex-1">{fontSize}%</span>
-              <button 
-                onClick={() => setFontSize(Math.min(200, fontSize + 10))}
-                className="px-3 py-1 bg-gray-200 rounded-r hover:bg-gray-300 transition"
-                aria-label="Aumentar fonte"
-              >
-                A+
-              </button>
-            </div>
-          </div>
-          
-          <div className="mb-4">
-            <label className="flex items-center cursor-pointer">
-              <input 
-                type="checkbox" 
-                checked={highContrast}
-                onChange={() => setHighContrast(!highContrast)}
-                className="mr-2 h-4 w-4"
-                id="high-contrast"
-              />
-              <span className="font-medium">Alto contraste</span>
-            </label>
-          </div>
-          
-          {!isReading ? (
-            <button 
-              onClick={startReading}
-              className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition flex items-center justify-center"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
-              </svg>
-              Ler conteúdo
-            </button>
-          ) : (
-            <button 
-              onClick={stopReading}
-              className="w-full py-2 bg-red-600 text-white rounded hover:bg-red-700 transition flex items-center justify-center"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clipRule="evenodd" />
-              </svg>
-              Parar leitura
-            </button>
-          )}
-          
-          <div className="mt-4 text-xs text-gray-500">
-            Use as teclas Tab e Enter para navegar pelo site usando o teclado.
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 
 function HomePage() {
@@ -249,7 +116,7 @@ function HomePage() {
                   Com uma infraestrutura moderna e corpo docente altamente qualificado, o curso oferece uma formação sólida, 
                   combinando teoria e prática através de projetos reais e parcerias com empresas do setor.
                 </p>
-                <Link to="/#sobre" className="inline-block bg-maroon-700 text-white px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
+                <Link to="/#sobre" className="inline-block bg-maroon-700 text-gray px-6 py-3 rounded-md font-medium hover:bg-maroon-800 transition">
                   Conheça mais
                 </Link>
               </div>

@@ -210,3 +210,9 @@ body::before {
 .accessibility-high-contrast [aria-hidden="true"] {
   display: none !important;
 }
+
+/* Estilo para destacar o texto sendo lido */
+.text-being-read {
+  background-color: rgba(66, 153, 225, 0.2);
+  border-radius: 2px;
+}

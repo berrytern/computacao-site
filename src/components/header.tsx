@@ -11,7 +11,7 @@ export function Header(props: any) {
         <div className="flex items-center">
         <img 
             src="https://upload.wikimedia.org/wikipedia/commons/7/77/Marca-da-UEPB-Aplica%C3%A7%C3%A3o-Colorida-em-PNG-1.png" 
-            alt="Logo UEPB" 
+            alt="Logo da Universidade UEPB - Departamento de Ciência da Computação" 
             className="h-12 mr-3"
         />
         <div className="border-l-2 border-gray-300 pl-3">
