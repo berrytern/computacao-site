@@ -29,7 +29,7 @@ export function Header(props: any) {
         <Link to="/docentes" className="text-gray-700 font-medium hover:text-maroon-700 transition">Docentes</Link>
         {/*<Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>*/}
         <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
-        <Link to="/#contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
+        <Link to="/contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
         <Link to="/area-aluno" className="bg-maroon-700 text-gray-700 px-4 py-2 rounded-md hover:bg-maroon-800 transition">Área do Aluno</Link>
         </nav>
         
@@ -53,7 +53,7 @@ export function Header(props: any) {
             <Link to="/docentes" className="text-gray-700 font-medium hover:text-maroon-700 transition">Docentes</Link>
             {/*<Link to="/disciplinas" className="text-gray-700 font-medium hover:text-maroon-700 transition">Disciplinas</Link>*/}
             <Link to="/projetos" className="text-gray-700 font-medium hover:text-maroon-700 transition">Projetos</Link>
-            <Link to="/contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
+            <Link to="/#contato" className="text-gray-700 font-medium hover:text-maroon-700 transition">Contato</Link>
             <Link to="/area-aluno" className="bg-maroon-700 text-white px-4 py-2 rounded-md hover:bg-maroon-800 transition text-center">Área do Aluno</Link>
         </div>
         </div>
