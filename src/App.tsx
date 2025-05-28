@@ -25,6 +25,7 @@ import { Estagio } from './components/areaALuno/estagio';
 import { Monitoria } from './components/areaALuno/monitoria';
 import { Pibic } from './components/areaALuno/pibic';
 import { Extensao } from './components/areaALuno/pesquisaExtensao';
+import { TCC } from './components/areaALuno/tcc';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path={getPath("/area-aluno/monitoria")} element={<Monitoria />} />
         <Route path={getPath("/area-aluno/iniciacao-cientifica")} element={<Pibic />} />
         <Route path={getPath("/area-aluno/projetos")} element={<Extensao />} />
+        <Route path={getPath("/area-aluno/tcc")} element={<TCC />} />
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
         <Route path={getPath("/noticias")} element={<NoticiasPage />} />
         <Route path={getPath("/noticias/:id")} element={<NoticiaDetalhePage />} /> {/* Rota para detalhes da notícia */}
