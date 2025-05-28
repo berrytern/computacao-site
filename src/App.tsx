@@ -23,6 +23,7 @@ import { EventoDetalhePage } from './components/EventoDetalhePage';
 import { getPath } from './utils/tools';
 import { Estagio } from './components/areaALuno/estagio';
 import { Monitoria } from './components/areaALuno/monitoria';
+import { Pibic } from './components/areaALuno/pibic';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path={getPath("/area-aluno/formularios")} element={<Formulario />} />
         <Route path={getPath("/area-aluno/estagios")} element={<Estagio />} />
         <Route path={getPath("/area-aluno/monitoria")} element={<Monitoria />} />
+        <Route path={getPath("/area-aluno/iniciacao-cientifica")} element={<Pibic />} />
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
         <Route path={getPath("/noticias")} element={<NoticiasPage />} />
         <Route path={getPath("/noticias/:id")} element={<NoticiaDetalhePage />} /> {/* Rota para detalhes da notícia */}
