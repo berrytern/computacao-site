@@ -8,7 +8,7 @@ export function Pibic() {
     {
       id: 1,
       titulo: "Inteligência Artificial Aplicada à Saúde",
-      professor: "Dr. Carlos Silva",
+      professor: "Fábio Luiz Leite Júnior",
       departamento: "Ciência da Computação",
       data: "15/06/2024",
       descricao: "Projeto que investiga aplicações de IA no diagnóstico médico por imagem. Requisitos: conhecimento em Python e noções de machine learning.",
@@ -18,7 +18,7 @@ export function Pibic() {
     {
       id: 2,
       titulo: "Desenvolvimento de Algoritmos Quânticos",
-      professor: "Dra. Ana Beatriz",
+      professor: "Ana Isabella Muniz Leite",
       departamento: "Ciência da Computação",
       data: "20/06/2024",
       descricao: "Pesquisa em computação quântica com foco em otimização de algoritmos. Aberto a alunos de computação e física.",
@@ -28,7 +28,7 @@ export function Pibic() {
     {
       id: 3,
       titulo: "Segurança Cibernética em IoT",
-      professor: "Prof. Marcelo Costa",
+      professor: "Daniel Scherer",
       departamento: "Ciência da Computação",
       data: "10/07/2024",
       descricao: "Estudo de vulnerabilidades em dispositivos IoT e desenvolvimento de protocolos seguros.",

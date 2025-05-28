@@ -10,28 +10,28 @@ export function Monitoria() {
     {
       id: 1,
       disciplina: "Algoritmos e Estruturas de Dados",
-      professor: "Dr. Carlos Silva",
+      professor: "Fábio Luiz Leite Júnior",
       vagas: 2,
       periodo: "2024.2"
     },
     {
       id: 2,
-      disciplina: "Programação Orientada a Objetos",
-      professor: "Dra. Ana Beatriz",
+      disciplina: "Programação Web",
+      professor: "Dunfrey Pires Aragão",
       vagas: 3,
       periodo: "2024.2"
     },
     {
       id: 3,
       disciplina: "Banco de Dados",
-      professor: "Prof. Marcelo Costa",
+      professor: "Wellington Candeia de Araujo",
       vagas: 1,
       periodo: "2024.2"
     },
     {
       id: 4,
       disciplina: "Inteligência Artificial",
-      professor: "Dr. Roberto Almeida",
+      professor: "Sabrina de Figueiredo Souto",
       vagas: 2,
       periodo: "2024.2"
     }
@@ -44,36 +44,36 @@ export function Monitoria() {
         id: 1,
         nome: "Ana Oliveira",
         matricula: "2028001234",
-        projeto: "Desenvolvimento de Sistemas Inteligentes",
-        orientador: "Prof. Maria Santos"
+        projeto: "LINGUAGEM DE PROGRAMAÇÃO I",
+        orientador: "Katia Elizabete Galdino"
       },
       {
         id: 2,
         nome: "Bruno Carvalho",
         matricula: "2028002345",
-        projeto: "Otimização de Algoritmos",
-        orientador: "Dr. Carlos Silva"
+        projeto: "ESTRUTURA DE DADOS",
+        orientador: "Kézia de Vasconcelos Oliveira Dantas"
       },
       {
         id: 3,
         nome: "Carla Mendes",
         matricula: "2028003456",
-        projeto: "Realidade Virtual Aplicada",
-        orientador: "Dra. Fernanda Lima"
+        projeto: "REDES DE COMPUTADORES",
+        orientador: "Luciana de Queiroz Leal Gomes"
       },
       {
         id: 4,
         nome: "Daniel Souza",
         matricula: "2028004567",
-        projeto: "Segurança em IoT",
-        orientador: "Prof. Eduardo Rocha"
+        projeto: "COMPUTAÇÃO GRÁFICA",
+        orientador: "Misael Elias de Morais"
       },
       {
         id: 5,
         nome: "Elaine Costa",
         matricula: "2028005678",
-        projeto: "Análise de Big Data",
-        orientador: "Dr. Roberto Almeida"
+        projeto: "COMPILADORES",
+        orientador: "Robson Pequeno de Sousa"
       }
     ],
     voluntarios: [
@@ -81,64 +81,64 @@ export function Monitoria() {
         id: 1,
         nome: "João Pereira",
         matricula: "2028006789",
-        projeto: "Laboratório de Inovação Tecnológica",
-        orientador: "Prof. Roberto Almeida"
+        projeto: "PROGRAMAÇÃO WEB",
+        orientador: "Antonio Carlos de Albuquerque"
       },
       {
         id: 2,
         nome: "Kátia Santos",
         matricula: "2028007890",
-        projeto: "Desenvolvimento de Jogos Educativos",
-        orientador: "Prof. Marcelo Costa"
+        projeto: "COMPUTAÇÃO DE ALTO DESEMPENHO",
+        orientador: "Edson Holanda Cavalcante Junior"
       },
       {
         id: 3,
         nome: "Luiz Fernandes",
         matricula: "2028008901",
-        projeto: "Sistemas Embarcados",
-        orientador: "Dra. Ana Beatriz"
+        projeto: "TÉCNICAS DE ANÁLISE DE ALGORITMO",
+        orientador: "Paulo Eduardo e Silva Barbosa"
       },
       {
         id: 4,
         nome: "Mariana Gonçalves",
         matricula: "2028009012",
-        projeto: "Acessibilidade Digital",
-        orientador: "Prof. Maria Santos"
+        projeto: "TECNOLOGIAS DE DESENVOLVIMENTO DE INTERFACE GRÁFICA",
+        orientador: "Vladimir Costa de Alencar"
       },
       {
         id: 5,
         nome: "Nelson Alves",
         matricula: "2028010123",
-        projeto: "Computação em Nuvem",
-        orientador: "Dr. Carlos Silva"
+        projeto: "LINGUAGENS FORMAIS E TEORIA DA COMPUTAÇÃO",
+        orientador: "Kézia de Vasconcelos Oliveira Dantas"
       },
       {
         id: 6,
         nome: "Patrícia Lima",
         matricula: "2028011234",
-        projeto: "Machine Learning Aplicado",
-        orientador: "Dra. Fernanda Lima"
+        projeto: "PARADIGMAS DE PROGRAMAÇÃO",
+        orientador: "Luciana de Queiroz Leal Gomes"
       },
       {
         id: 7,
         nome: "Ricardo Moraes",
         matricula: "2028012345",
-        projeto: "Blockchain e Criptomoedas",
-        orientador: "Prof. Eduardo Rocha"
+        projeto: "INTELIGÊNCIA ARTIFICIAL",
+        orientador: "Misael Elias de Morais"
       },
       {
         id: 8,
         nome: "Sandra Vieira",
         matricula: "2028013456",
         projeto: "Interface Humano-Computador",
-        orientador: "Dra. Ana Beatriz"
+        orientador: "Paulo Eduardo e Silva Barbosa"
       },
       {
         id: 9,
         nome: "Tiago Rocha",
         matricula: "2028014567",
-        projeto: "Processamento de Linguagem Natural",
-        orientador: "Dr. Roberto Almeida"
+        projeto: "ENGENHARIA DE SOFTWARE II",
+        orientador: "Robson Pequeno de Sousa"
       }
     ]
   };
