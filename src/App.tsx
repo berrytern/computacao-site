@@ -21,6 +21,7 @@ import { NoticiaDetalhePage } from './components/NoticiaDetalhePage';
 import { EventosPage } from './components/EventosPage';
 import { EventoDetalhePage } from './components/EventoDetalhePage';
 import { getPath } from './utils/tools';
+import { Estagio } from './components/areaALuno/estagio';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path={getPath("/area-aluno/estrutura-curricular")} element={<EstruturaCurricularPage />} />
         <Route path={getPath("/area-aluno/calendario")} element={<Calendario />} />
         <Route path={getPath("/area-aluno/formularios")} element={<Formulario />} />
+        <Route path={getPath("/area-aluno/estagios")} element={<Estagio />} />
         {/*<Route path="/area-aluno/disciplinas/:codigo" element={<DisciplinaDetalhesPage />} />*/}
         <Route path={getPath("/noticias")} element={<NoticiasPage />} />
         <Route path={getPath("/noticias/:id")} element={<NoticiaDetalhePage />} /> {/* Rota para detalhes da notícia */}
